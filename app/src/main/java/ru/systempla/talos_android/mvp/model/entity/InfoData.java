@@ -1,24 +1,55 @@
 package ru.systempla.talos_android.mvp.model.entity;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class InfoData {
 
-    @SerializedName("info_id") private Integer infoId;
-    @SerializedName("info_product_name") private String name;
-    @SerializedName("info_weight") private float weight;
-    @SerializedName("price_sv") private float priceSv;
-    @SerializedName("price_rin") private float priceRin;
-    @SerializedName("price_dzsl") private float priceDzsl;
+    @SerializedName("infoId")
+    @Expose
+    private Integer infoId;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("weight")
+    @Expose
+    private Double weight;
+    @SerializedName("priceSv")
+    @Expose
+    private Double priceSv;
+    @SerializedName("priceRin")
+    @Expose
+    private Double priceRin;
+    @SerializedName("priceDzsl")
+    @Expose
+    private Double priceDzsl;
 
-    public InfoData() {
-    }
-
-    public InfoData(String name, float weight, float priceSv, float priceRin, float priceDzsl) {
+    public InfoData(Integer infoId, String name, Double weight, Double priceSv, Double priceRin, Double priceDzsl) {
+        this.infoId = infoId;
         this.name = name;
         this.weight = weight;
         this.priceSv = priceSv;
         this.priceRin = priceRin;
         this.priceDzsl = priceDzsl;
+    }
+
+    public InfoData(String name, Double weight, Double priceSv, Double priceRin, Double priceDzsl) {
+        this.name = name;
+        this.weight = weight;
+        this.priceSv = priceSv;
+        this.priceRin = priceRin;
+        this.priceDzsl = priceDzsl;
+    }
+
+    @Override
+    public String toString() {
+        return "InfoData{" +
+                "infoId=" + infoId +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", priceSv=" + priceSv +
+                ", priceRin=" + priceRin +
+                ", priceDzsl=" + priceDzsl +
+                '}';
     }
 }

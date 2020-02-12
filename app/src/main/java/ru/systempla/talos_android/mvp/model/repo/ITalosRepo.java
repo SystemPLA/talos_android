@@ -2,6 +2,7 @@ package ru.systempla.talos_android.mvp.model.repo;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import ru.systempla.talos_android.mvp.model.entity.InfoData;
 import ru.systempla.talos_android.mvp.model.entity.Order;
@@ -13,15 +14,19 @@ public interface ITalosRepo {
     Single<List<Order>> loadOrders();
     Single<List<InfoData>> loadInfoData();
 
-    Single<List<Product>> createProduct(Product product);
-    Single<List<Order>> createOrder(Order order);
-    Single<List<InfoData>> createInfoData(InfoData infoData);
+    Single<Product> loadProducts(int id);
+    Single<Order> loadOrders(int id);
+    Single<InfoData> loadInfoData(int id);
 
-    Single<List<Product>> editProduct(int id, Product product);
-    Single<List<Order>> editOrder(int id, Order order);
-    Single<List<InfoData>> editInfoData(int id, InfoData infoData);
+    Completable createProduct(Product product);
+    Completable createOrder(Order order);
+    Completable createInfoData(InfoData infoData);
 
-    Single<List<Product>> deleteProduct(int id);
-    Single<List<Order>> deleteOrder(int id);
-    Single<List<InfoData>> deleteInfoData(int id);
+    Completable editProduct(int id, Product product);
+    Completable editOrder(int id, Order order);
+    Completable editInfoData(int id, InfoData infoData);
+
+    Completable deleteProduct(int id);
+    Completable deleteOrder(int id);
+    Completable deleteInfoData(int id);
 }

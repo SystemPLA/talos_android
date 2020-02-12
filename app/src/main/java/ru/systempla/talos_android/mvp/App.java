@@ -3,6 +3,7 @@ package ru.systempla.talos_android.mvp;
 import android.app.Application;
 
 import ru.systempla.talos_android.di.AppComponent;
+import ru.systempla.talos_android.di.DaggerAppComponent;
 import ru.systempla.talos_android.di.module.AppModule;
 import timber.log.Timber;
 
