@@ -9,5 +9,4 @@ public interface MainView extends MvpView {
 
     void init();
     void setToolbarTitle (String title);
-    void setBottomNavigationSelectedItem (String item);
 }

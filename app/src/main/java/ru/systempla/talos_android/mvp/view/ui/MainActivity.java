@@ -80,19 +80,19 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        Timber.d("Нажали "+id);
-        switch (id){
+        switch (item.getItemId()){
             case R.id.navigation_warehouse:
-                Timber.d("Warehouse");
+                bottomNavigationView.getMenu().getItem(2).setChecked(true);
                 presenter.navigateToWarehouse();
                 break;
             case R.id.navigation_shipments:
-                Timber.d("Shipments");
+                bottomNavigationView.getMenu().getItem(1).setChecked(true);
+                bottomNavigationView.setSelected(true);
                 presenter.navigateToShipments();
                 break;
             case R.id.navigation_tools:
-                Timber.d("Tools");
+                bottomNavigationView.getMenu().getItem(0).setChecked(true);
+                bottomNavigationView.setSelected(true);
                 presenter.navigateToTools();
                 break;
         }
@@ -102,27 +102,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
     @Override
     public void init(){
         setSupportActionBar(toolbar);
-        setBottomNavigationSelectedItem("Склад");
+        bottomNavigationView.getMenu().getItem(2).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
     public void setToolbarTitle (String title){
         getSupportActionBar().setTitle(title);
-    }
-
-    @Override
-    public void setBottomNavigationSelectedItem (String item){
-        switch (item) {
-            case "Склад":
-                bottomNavigationView.setSelectedItemId(R.id.navigation_warehouse);
-                break;
-            case "Отгрузки":
-                bottomNavigationView.setSelectedItemId(R.id.navigation_shipments);
-                break;
-            case "Инструменты":
-                bottomNavigationView.setSelectedItemId(R.id.navigation_tools);
-                break;
-        }
     }
 }
