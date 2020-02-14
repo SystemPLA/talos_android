@@ -2,9 +2,9 @@ package ru.systempla.talos_android.navigation;
 
 import androidx.fragment.app.Fragment;
 
-import ru.systempla.talos_android.mvp.view.ui.ShipmentsFragment;
-import ru.systempla.talos_android.mvp.view.ui.ToolsFragment;
-import ru.systempla.talos_android.mvp.view.ui.WarehouseFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.ToolsFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseFragment;
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
 public class Screens {

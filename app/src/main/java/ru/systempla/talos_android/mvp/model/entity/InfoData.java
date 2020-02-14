@@ -52,4 +52,28 @@ public class InfoData {
                 ", priceDzsl=" + priceDzsl +
                 '}';
     }
+
+    public Integer getInfoId() {
+        return infoId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public Double getPriceSv() {
+        return priceSv;
+    }
+
+    public Double getPriceRin() {
+        return priceRin;
+    }
+
+    public Double getPriceDzsl() {
+        return priceDzsl;
+    }
 }

@@ -11,9 +11,9 @@ import ru.systempla.talos_android.mvp.presenter.ShipmentsPresenter;
 import ru.systempla.talos_android.mvp.presenter.ToolsPresenter;
 import ru.systempla.talos_android.mvp.presenter.WarehousePresenter;
 import ru.systempla.talos_android.mvp.view.ui.MainActivity;
-import ru.systempla.talos_android.mvp.view.ui.ShipmentsFragment;
-import ru.systempla.talos_android.mvp.view.ui.ToolsFragment;
-import ru.systempla.talos_android.mvp.view.ui.WarehouseFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.ToolsFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseFragment;
 
 @Singleton
 @Component(modules = {

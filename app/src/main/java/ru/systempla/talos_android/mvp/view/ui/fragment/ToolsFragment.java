@@ -1,4 +1,4 @@
-package ru.systempla.talos_android.mvp.view.ui;
+package ru.systempla.talos_android.mvp.view.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
 import ru.systempla.talos_android.R;
 import ru.systempla.talos_android.mvp.App;
-import ru.systempla.talos_android.mvp.presenter.MainActivityPresenter;
 import ru.systempla.talos_android.mvp.presenter.ToolsPresenter;
 import ru.systempla.talos_android.mvp.view.ToolsView;
 

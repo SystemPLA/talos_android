@@ -16,9 +16,6 @@ public class MainActivityPresenter extends MvpPresenter<MainView> {
     private Scheduler mainThreadScheduler;
     private Scheduler ioThreadScheduler;
 
-//    @Inject
-//    ITalosRepo talosRepo;
-
     @Inject
     Router router;
 
@@ -47,8 +44,5 @@ public class MainActivityPresenter extends MvpPresenter<MainView> {
     public void navigateToTools(){
         getViewState().setToolbarTitle("Инструменты");
         router.replaceScreen(new Screens.ToolsScreen());
-    }
-
-    private void getRepoData() {
     }
 }

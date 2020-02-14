@@ -104,4 +104,56 @@ public class Order {
                 ", orderStatus='" + orderStatus + '\'' +
                 '}';
     }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public String getAcceptionDate() {
+        return acceptionDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public long getTypeOneCount() {
+        return typeOneCount;
+    }
+
+    public long getTypeTwoCount() {
+        return typeTwoCount;
+    }
+
+    public long getTypeThreeCount() {
+        return typeThreeCount;
+    }
+
+    public long getTypeFourCount() {
+        return typeFourCount;
+    }
+
+    public long getTypeFiveCount() {
+        return typeFiveCount;
+    }
+
+    public long getTypeSixCount() {
+        return typeSixCount;
+    }
+
+    public long getTypeSevenCount() {
+        return typeSevenCount;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
 }

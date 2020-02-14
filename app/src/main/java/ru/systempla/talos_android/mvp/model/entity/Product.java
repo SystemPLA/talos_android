@@ -46,4 +46,24 @@ public class Product {
                 ", count=" + count +
                 '}';
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public long getCount() {
+        return count;
+    }
 }
