@@ -26,6 +26,7 @@ import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
+import timber.log.Timber;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -58,6 +59,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        App.getInstance().getAppComponent().inject(this);
 
         if(savedInstanceState == null) {
             router.replaceScreen(new Screens.WarehouseScreen());
@@ -79,24 +81,29 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        Timber.d("Нажали "+id);
         switch (id){
             case R.id.navigation_warehouse:
+                Timber.d("Warehouse");
                 presenter.navigateToWarehouse();
                 break;
             case R.id.navigation_shipments:
+                Timber.d("Shipments");
                 presenter.navigateToShipments();
                 break;
             case R.id.navigation_tools:
+                Timber.d("Tools");
                 presenter.navigateToTools();
                 break;
         }
-        return true;
+        return false;
     }
 
     @Override
     public void init(){
         setSupportActionBar(toolbar);
         setBottomNavigationSelectedItem("Склад");
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
