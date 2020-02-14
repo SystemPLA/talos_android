@@ -4,13 +4,24 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ru.systempla.talos_android.di.module.AppModule;
+import ru.systempla.talos_android.di.module.CiceroneModule;
 import ru.systempla.talos_android.di.module.RepoModule;
-import ru.systempla.talos_android.mvp.presenter.StoragePresenter;
+import ru.systempla.talos_android.mvp.presenter.MainActivityPresenter;
+import ru.systempla.talos_android.mvp.view.ui.MainActivity;
+import ru.systempla.talos_android.mvp.view.ui.ShipmentsFragment;
+import ru.systempla.talos_android.mvp.view.ui.ToolsFragment;
+import ru.systempla.talos_android.mvp.view.ui.WarehouseFragment;
 
 @Singleton
-@Component(modules = {RepoModule.class,
-        AppModule.class})
-public interface AppComponent {
+@Component(modules = {
+        RepoModule.class,
+        AppModule.class,
+        CiceroneModule.class})
 
-    void inject(StoragePresenter storagePresenter);
+public interface AppComponent {
+    void inject(MainActivityPresenter mainActivityPresenter);
+    void inject(MainActivity mainActivity);
+    void inject(WarehouseFragment warehouseFragment);
+    void inject(ShipmentsFragment shipmentsFragment);
+    void inject(ToolsFragment toolsFragment);
 }
