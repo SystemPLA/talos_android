@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">talos_android</string>
-<!--    <string name="title_tools">talos_android</string>-->
+    <string name="table_name_label">Наименование</string>
+    <string name="table_count_label">Кол-во</string>
+    <!--    <string name="title_tools">talos_android</string>-->
 <!--    <string name="title_shipments">talos_android</string>-->
 <!--    <string name="title_warehouse">talos_android</string>-->
 </resources>
