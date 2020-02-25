@@ -29,29 +29,4 @@ public IDataSource api(/*@Named("clientLogging") OkHttpClient okHttpClient*/) {
         .create(IDataSource.class);
     }
 
-//    @Singleton
-//    @Provides
-//    public HttpLoggingInterceptor loggingInterceptor() {
-//
-//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        return interceptor;
-//    }
-//
-//    @Named("clientLogging")
-//    @Singleton
-//    @Provides
-//    public OkHttpClient okHttpClientLogging(HttpLoggingInterceptor loggingInterceptor) {
-//        return new OkHttpClient.Builder()
-//                .addInterceptor(loggingInterceptor)
-//                .build();
-//    }
-//
-//    @Named("client")
-//    @Singleton
-//    @Provides
-//    public OkHttpClient okHttpClient(HttpLoggingInterceptor loggingInterceptor) {
-//        return new OkHttpClient.Builder()
-//                .build();
-//    }
 }

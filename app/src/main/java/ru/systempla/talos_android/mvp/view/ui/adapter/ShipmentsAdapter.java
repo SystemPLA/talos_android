@@ -1,5 +1,6 @@
 package ru.systempla.talos_android.mvp.view.ui.adapter;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -61,6 +63,12 @@ public class ShipmentsAdapter extends RecyclerView.Adapter<ShipmentsAdapter.Ship
         @BindView(R.id.image_view_shipments_status)
         ImageView shipmentStatus;
 
+        @BindDrawable(R.drawable.ic_checked)
+        Drawable icChecked;
+
+        @BindDrawable(R.drawable.ic_unchecked)
+        Drawable icUnchecked;
+
 //        @BindView(R.id.button_shipments_more)
 //        Button buttonMore;
 
@@ -93,9 +101,9 @@ public class ShipmentsAdapter extends RecyclerView.Adapter<ShipmentsAdapter.Ship
         @Override
         public void setStatus(Boolean status) {
             if (status) {
-                shipmentStatus.setImageDrawable(parentViewGroup.getContext().getResources().getDrawable(R.drawable.ic_checked));
+                shipmentStatus.setImageDrawable(icChecked);
             } else {
-                shipmentStatus.setImageDrawable(parentViewGroup.getContext().getResources().getDrawable(R.drawable.ic_unchecked));
+                shipmentStatus.setImageDrawable(icUnchecked);
             }
         }
     }
