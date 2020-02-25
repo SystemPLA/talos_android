@@ -2,6 +2,7 @@ package ru.systempla.talos_android.mvp.view.ui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -48,7 +49,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
     MainActivityPresenter presenter;
 
     @ProvidePresenter
-    public MainActivityPresenter providePresenter(){
+    public MainActivityPresenter providePresenter() {
         MainActivityPresenter presenter = new MainActivityPresenter(AndroidSchedulers.mainThread(), Schedulers.io());
         App.getInstance().getAppComponent().inject(presenter);
         return presenter;
@@ -61,7 +62,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
         ButterKnife.bind(this);
         App.getInstance().getAppComponent().inject(this);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             router.replaceScreen(new Screens.WarehouseScreen());
         }
     }
@@ -80,7 +81,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.navigation_warehouse:
                 bottomNavigationView.getMenu().getItem(2).setChecked(true);
                 presenter.navigateToWarehouse();
@@ -100,14 +101,24 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
     }
 
     @Override
-    public void init(){
+    public void init() {
         setSupportActionBar(toolbar);
         bottomNavigationView.getMenu().getItem(2).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
-    public void setToolbarTitle (String title){
+    public void setToolbarTitle(String title) {
         getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void hideBottomNavigation() {
+        bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showBottomNavigation() {
+        bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }

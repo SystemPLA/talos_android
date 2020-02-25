@@ -76,7 +76,8 @@ public class WarehouseRVAdapter extends RecyclerView.Adapter<WarehouseRVAdapter.
         public void setStatus(String status) {
             if (status.equals("брак")) {
                 rvStatus.setText(status);
-            } else {
+            }
+            else {
                 rvStatus.setText("");
             }
         }

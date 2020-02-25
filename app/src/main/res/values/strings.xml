@@ -1,8 +1,32 @@
+<!DOCTYPE resources [<!ENTITY stairsFrame "Рама с лестницей">
+    <!ENTITY passFrame "Рама проходная">
+    <!ENTITY diagonalConnection "Связь диагональная">
+    <!ENTITY horizontalConnection "Связь горизонтальная">
+    <!ENTITY crossbar "Ригель настила">
+    <!ENTITY deck "Настил деревянный">
+    <!ENTITY supports "Опоры (пятки)">
+    <!ENTITY costPerDay "Стоимость в день">
+    ]>
 <resources>
     <string name="app_name">talos_android</string>
     <string name="table_name_label">Наименование</string>
     <string name="table_count_label">Кол-во</string>
+    <string name="calc_launch_button_text">Рассчитать стоимость</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--    <string name="title_tools">talos_android</string>-->
-<!--    <string name="title_shipments">talos_android</string>-->
-<!--    <string name="title_warehouse">talos_android</string>-->
+    <!--    <string name="title_shipments">talos_android</string>-->
+    <!--    <string name="title_warehouse">talos_android</string>-->
+
+
+    <string name="launch_calc">Calculate the price</string>
+    <string name="calc_title">Рассчитайте стоимость:</string>
+    <string name="calc_height">Высота (м)</string>
+    <string name="calc_lenght">Длина (м)</string>
+    <string name="calc_button">Рассчитать</string>
+
+    <string name="calc_result_format">&stairsFrame; = %d\n&passFrame; = %d\n&diagonalConnection; = %d\n&horizontalConnection;
+        = %d\n&crossbar; = %d\n&deck; = %d\n&supports; = %d\n&costPerDay; = %.2f</string>
+    <string name="button_more_text">Подробнее</string>
 </resources>

@@ -28,18 +28,18 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     class WarehouseListPresenter implements IWarehouseListPresenter {
 
         PublishSubject<WarehouseItemView> clickSubject = PublishSubject.create();
-        List<Product> WarehouseBlocks = new ArrayList<>();
+        List<Product> warehouseBlocks = new ArrayList<>();
 
         @Override
         public void bind(WarehouseItemView view) {
-            view.setName(WarehouseBlocks.get(view.getPos()).getName());
-            view.setStatus(WarehouseBlocks.get(view.getPos()).getStatus());
-            view.setCount(WarehouseBlocks.get(view.getPos()).getCount());
+            view.setName(warehouseBlocks.get(view.getPos()).getName());
+            view.setStatus(warehouseBlocks.get(view.getPos()).getStatus());
+            view.setCount(warehouseBlocks.get(view.getPos()).getCount());
         }
 
         @Override
         public int getCount() {
-            return WarehouseBlocks.size();
+            return warehouseBlocks.size();
         }
 
         @Override
@@ -70,8 +70,8 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
                 .subscribeOn(ioThreadScheduler)
                 .observeOn(mainThreadScheduler)
                 .subscribe(model -> {
-                    warehouseListPresenter.WarehouseBlocks.clear();
-                    warehouseListPresenter.WarehouseBlocks.addAll(model);
+                    warehouseListPresenter.warehouseBlocks.clear();
+                    warehouseListPresenter.warehouseBlocks.addAll(model);
                     getViewState().updateList();
                     getViewState().hideLoading();
                 }, t -> {
