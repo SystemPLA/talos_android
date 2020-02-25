@@ -6,4 +6,5 @@ import moxy.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(value = AddToEndSingleStrategy.class)
 public interface ShipmentsView extends MvpView {
+    void init();
 }

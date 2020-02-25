@@ -8,5 +8,10 @@ import moxy.viewstate.strategy.StateStrategyType;
 public interface MainView extends MvpView {
 
     void init();
-    void setToolbarTitle (String title);
+
+    void setToolbarTitle(String title);
+
+    void hideBottomNavigation();
+
+    void showBottomNavigation();
 }

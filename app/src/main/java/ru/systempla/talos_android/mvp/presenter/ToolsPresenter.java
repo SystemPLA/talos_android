@@ -15,4 +15,15 @@ public class ToolsPresenter extends MvpPresenter<ToolsView> {
         this.mainThreadScheduler = mainThreadScheduler;
         this.ioThreadScheduler = ioThreadScheduler;
     }
+
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getViewState().init();
+    }
+
+    public void startCalculator() {
+
+        getViewState().startCalculator();
+    }
 }
