@@ -46,6 +46,11 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         public PublishSubject<WarehouseItemView> getClickSubject() {
             return clickSubject;
         }
+
+        @Override
+        public PublishSubject<WarehouseItemView> getSubjectMenu() {
+            return clickSubject;
+        }
     }
 
     public WarehousePresenter(Scheduler mainThreadScheduler, Scheduler ioThreadScheduler) {
@@ -62,6 +67,13 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().init();
+
+//        warehouseListPresenter.getClickSubject().subscribe();
+        warehouseListPresenter.getSubjectMenu().subscribe(itemView -> inflateSubMenu(itemView.getPos()));
+    }
+
+    private void inflateSubMenu(int position) {
+        getViewState().inflateSubmenu(position);
     }
 
     public void loadWarehouseData(){

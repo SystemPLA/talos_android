@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -96,5 +97,24 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
     @Override
     public void updateList() {
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void inflateSubmenu(int position) {
+        PopupMenu popupMenu = new PopupMenu(this.getContext(), recyclerView.getChildAt(position));
+        popupMenu.inflate(R.menu.warehouse_item_menu);
+        popupMenu.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.change_item:
+
+                    return true;
+                case R.id.delete_item:
+
+                    return true;
+                default:
+                    return false;
+            }
+        });
+        popupMenu.show();
     }
 }
