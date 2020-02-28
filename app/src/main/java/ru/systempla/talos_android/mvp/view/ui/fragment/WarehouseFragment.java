@@ -13,8 +13,11 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -44,6 +47,14 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
 
     @BindView(R.id.rl_loading)
     RelativeLayout loadingRelativeLayout;
+
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+
+    @OnClick(R.id.fab)
+    void onFabClick() {
+        presenter.onFabClicked();
+    }
 
     @ProvidePresenter
     public WarehousePresenter providePresenter(){
@@ -82,12 +93,14 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
 
     @Override
     public void showLoading() {
+        fab.setVisibility(View.GONE);
         loadingRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
         loadingRelativeLayout.setVisibility(View.GONE);
+        fab.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -108,10 +121,10 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.change_item:
-
+                    presenter.onChangeMenuPressed(position);
                     return true;
                 case R.id.delete_item:
-
+                    presenter.onDeleteMenuPressed(position);
                     return true;
                 default:
                     return false;

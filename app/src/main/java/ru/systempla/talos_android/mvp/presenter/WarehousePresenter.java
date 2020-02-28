@@ -28,6 +28,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     class WarehouseListPresenter implements IWarehouseListPresenter {
 
         PublishSubject<WarehouseItemView> clickSubject = PublishSubject.create();
+
         List<Product> warehouseBlocks = new ArrayList<>();
 
         @Override
@@ -41,7 +42,6 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         public int getCount() {
             return warehouseBlocks.size();
         }
-
         @Override
         public PublishSubject<WarehouseItemView> getClickSubject() {
             return clickSubject;
@@ -51,18 +51,18 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         public PublishSubject<WarehouseItemView> getSubjectMenu() {
             return clickSubject;
         }
-    }
 
+
+
+    }
     public WarehousePresenter(Scheduler mainThreadScheduler, Scheduler ioThreadScheduler) {
         this.mainThreadScheduler = mainThreadScheduler;
         this.ioThreadScheduler = ioThreadScheduler;
         warehouseListPresenter = new WarehouseListPresenter();
     }
-
     public IWarehouseListPresenter getWarehouseListPresenter() {
         return warehouseListPresenter;
     }
-
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
@@ -90,5 +90,14 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
                     getViewState().showMessage("Ошибка загрузки данных");
                     getViewState().hideLoading();
                 });
+    }
+
+    public void onChangeMenuPressed(int position) {
+    }
+
+    public void onDeleteMenuPressed(int position) {
+    }
+
+    public void onFabClicked() {
     }
 }
