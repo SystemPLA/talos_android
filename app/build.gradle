@@ -58,4 +58,10 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
+
+//    надо подумать, понадобится ли библиотека
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-support-v4:2.1.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.1.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.1.1'
 }
