@@ -1,6 +1,7 @@
 package ru.systempla.talos_android.mvp.view.ui.fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -101,7 +102,8 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
 
     @Override
     public void inflateSubmenu(int position) {
-        PopupMenu popupMenu = new PopupMenu(this.getContext(), recyclerView.getChildAt(position));
+        PopupMenu popupMenu = new PopupMenu(this.getContext(), recyclerView.getChildAt(position),
+                Gravity.END);
         popupMenu.inflate(R.menu.warehouse_item_menu);
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
