@@ -55,6 +55,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
 
 
 
+
     }
     public WarehousePresenter(Scheduler mainThreadScheduler, Scheduler ioThreadScheduler) {
         this.mainThreadScheduler = mainThreadScheduler;
@@ -89,7 +90,6 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
                     getViewState().hideLoading();
                 });
     }
-
     public void onShowMenuPressed(int position) {
         router.navigateTo(new Screens.DetailsScreen(warehouseListPresenter.warehouseBlocks.get(position)));
     }
@@ -100,11 +100,11 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     public void onDeleteMenuPressed(int position) {
     }
 
-    public void onFabClicked() {
-        router.navigateTo(new Screens.CreationScreen());
-    }
-
     public void setTitle() {
         getViewState().setToolbarTitle("Склад");
+    }
+
+    public void onCreateMenuPressed() {
+        router.navigateTo(new Screens.CreationScreen());
     }
 }

@@ -3,6 +3,9 @@ package ru.systempla.talos_android.mvp.view.ui.fragment;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -50,14 +53,6 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
     @BindView(R.id.rl_loading)
     RelativeLayout loadingRelativeLayout;
 
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
-
-    @OnClick(R.id.fab)
-    void onFabClick() {
-        presenter.onFabClicked();
-    }
-
     @ProvidePresenter
     public WarehousePresenter providePresenter(){
         WarehousePresenter presenter = new WarehousePresenter(AndroidSchedulers.mainThread(), Schedulers.io());
@@ -71,11 +66,13 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
         View view = inflater.inflate(R.layout.warehouse_fragment, container, false);
         unbinder = ButterKnife.bind(this, view);
         App.getInstance().getAppComponent().inject(this);
+        setHasOptionsMenu(true);
         return view;
     }
 
     @Override
     public void onDestroyView() {
+        setHasOptionsMenu(false);
         super.onDestroyView();
         unbinder.unbind();
     }
@@ -88,6 +85,21 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
     }
 
     @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        getActivity().getMenuInflater().inflate(R.menu.warehouse_creation_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.create_item) {
+            presenter.onCreateMenuPressed();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void init() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new WarehouseRVAdapter(presenter.getWarehouseListPresenter());
@@ -96,14 +108,12 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
 
     @Override
     public void showLoading() {
-        fab.setVisibility(View.GONE);
         loadingRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
         loadingRelativeLayout.setVisibility(View.GONE);
-        fab.setVisibility(View.VISIBLE);
     }
 
     @Override
