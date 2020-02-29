@@ -18,6 +18,7 @@ public class ApiModule {
 
 //Закоменчанные элементы нужны для отладки, но не совместимы с API 19. Их нужно удалить перед сдачей проекта.
 
+@Singleton
 @Provides
 public IDataSource api(/*@Named("clientLogging") OkHttpClient okHttpClient*/) {
     return new Retrofit.Builder()
@@ -28,5 +29,22 @@ public IDataSource api(/*@Named("clientLogging") OkHttpClient okHttpClient*/) {
         .build()
         .create(IDataSource.class);
     }
+
+//    @Singleton
+//    @Provides
+//    public HttpLoggingInterceptor loggingInterceptor() {
+//        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+//        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        return interceptor;
+//    }
+//
+//    @Named("clientLogging")
+//    @Singleton
+//    @Provides
+//    public OkHttpClient okHttpClientLogging(HttpLoggingInterceptor loggingInterceptor) {
+//        return new OkHttpClient.Builder()
+//                .addInterceptor(loggingInterceptor)
+//                .build();
+//    }
 
 }

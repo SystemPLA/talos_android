@@ -15,11 +15,13 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import moxy.MvpAppCompatActivity;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
 import ru.systempla.talos_android.R;
+import ru.systempla.talos_android.mvp.App;
 import ru.systempla.talos_android.mvp.model.entity.Product;
 import ru.systempla.talos_android.mvp.presenter.WarehouseDetailsPresenter;
 import ru.systempla.talos_android.mvp.view.WarehouseDetailsView;
@@ -54,7 +56,8 @@ public class WarehouseDetailsFragment extends MvpAppCompatFragment implements Wa
 
     @ProvidePresenter
     public WarehouseDetailsPresenter providePresenter() {
-        WarehouseDetailsPresenter presenter = new WarehouseDetailsPresenter(AndroidSchedulers.mainThread(), (Product) getArguments().getSerializable("product"));
+        WarehouseDetailsPresenter presenter = new WarehouseDetailsPresenter(AndroidSchedulers.mainThread(), Schedulers.io(), (Product) getArguments().getSerializable("product"));
+        App.getInstance().getAppComponent().inject(presenter);
         return presenter;
     }
 
@@ -63,6 +66,7 @@ public class WarehouseDetailsFragment extends MvpAppCompatFragment implements Wa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detail_warehouse_item_fragment, container, false);
         ButterKnife.bind(this, view);
+        App.getInstance().getAppComponent().inject(this);
         setHasOptionsMenu(true);
         return view;
     }

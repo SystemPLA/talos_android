@@ -8,6 +8,7 @@ import ru.systempla.talos_android.mvp.model.api.IDataSource;
 import ru.systempla.talos_android.mvp.model.entity.InfoData;
 import ru.systempla.talos_android.mvp.model.entity.Order;
 import ru.systempla.talos_android.mvp.model.entity.Product;
+import timber.log.Timber;
 
 public class TalosRepo implements ITalosRepo {
 

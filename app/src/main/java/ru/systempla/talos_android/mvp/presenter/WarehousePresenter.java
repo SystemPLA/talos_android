@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.CompletableObserver;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
@@ -54,8 +55,6 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         }
 
 
-
-
     }
     public WarehousePresenter(Scheduler mainThreadScheduler, Scheduler ioThreadScheduler) {
         this.mainThreadScheduler = mainThreadScheduler;
@@ -75,6 +74,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     private void inflateSubMenu(int position) {
         getViewState().inflateSubmenu(position);
     }
+
     public void loadWarehouseData(){
         getViewState().showLoading();
         Disposable disposable = talosRepo.loadProducts()
@@ -98,6 +98,25 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     }
 
     public void onDeleteMenuPressed(int position) {
+        talosRepo.deleteProduct(warehouseListPresenter.warehouseBlocks.get(position).getId())
+                .subscribeOn(ioThreadScheduler)
+                .observeOn(mainThreadScheduler)
+                .subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                router.replaceScreen(new Screens.WarehouseScreen());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
     }
 
     public void setTitle() {
