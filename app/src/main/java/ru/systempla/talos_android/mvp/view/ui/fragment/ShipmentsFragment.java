@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import moxy.MvpAppCompatActivity;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
@@ -62,9 +63,20 @@ public class ShipmentsFragment extends MvpAppCompatFragment implements Shipments
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        presenter.setTitle();
+    }
+
+    @Override
     public void init() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ShipmentsAdapter(presenter.getListShipmentsPresenter());
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
     }
 }

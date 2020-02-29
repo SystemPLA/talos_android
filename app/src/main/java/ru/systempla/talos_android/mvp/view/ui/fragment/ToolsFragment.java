@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import moxy.MvpAppCompatActivity;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
@@ -59,13 +60,13 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
     @Override
     public void onResume() {
         super.onResume();
+        presenter.setTitle();
         ((MainView)getActivity()).showBottomNavigation();
     }
 
 
     @Override
     public void init() {
-        //Саня, привет)
     }
 
     @Override
@@ -84,5 +85,10 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
     }
 }

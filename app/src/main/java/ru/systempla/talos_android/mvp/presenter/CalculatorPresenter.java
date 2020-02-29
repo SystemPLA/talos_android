@@ -71,4 +71,8 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         supportsCount = (sectionCount + 1) * 2;
         costPerDay = height * length * squareMeterCost;
     }
+
+    public void setTitle() {
+        getViewState().setToolbarTitle("Калькулятор");
+    }
 }

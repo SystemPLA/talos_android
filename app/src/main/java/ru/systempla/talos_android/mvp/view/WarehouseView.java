@@ -12,6 +12,7 @@ public interface WarehouseView extends MvpView {
     void showLoading();
     void hideLoading();
     void updateList();
+    void setToolbarTitle(String string);
 
     @StateStrategyType(value = OneExecutionStateStrategy.class)
     void showMessage(String text);

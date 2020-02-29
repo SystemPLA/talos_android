@@ -31,13 +31,8 @@ public class WarehouseDetailsPresenter extends MvpPresenter<WarehouseDetailsView
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
-        changeTitle();
         loadData();
     }
-
-    private void changeTitle() {
-        getViewState().setProductTitle("Детали по товару");
-   }
 
     private void loadData() {
         Completable.fromAction(() ->
@@ -49,4 +44,15 @@ public class WarehouseDetailsPresenter extends MvpPresenter<WarehouseDetailsView
                         getViewState().setProductCount(String.valueOf(product.getCount()));
                 }).subscribeOn(mainThreadScheduler).subscribe();
     }
+
+    public void onChangeMenuPressed() {
+    }
+
+    public void onDeleteMenuPressed() {
+    }
+
+    public void onFragmentResume() {
+        getViewState().setToolbarTitle("Детали по товару");
+    }
+
 }

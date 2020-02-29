@@ -54,6 +54,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         }
 
 
+
     }
     public WarehousePresenter(Scheduler mainThreadScheduler, Scheduler ioThreadScheduler) {
         this.mainThreadScheduler = mainThreadScheduler;
@@ -73,7 +74,6 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     private void inflateSubMenu(int position) {
         getViewState().inflateSubmenu(position);
     }
-
     public void loadWarehouseData(){
         getViewState().showLoading();
         Disposable disposable = talosRepo.loadProducts()
@@ -101,5 +101,9 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     }
 
     public void onFabClicked() {
+    }
+
+    public void setTitle() {
+        getViewState().setToolbarTitle("Склад");
     }
 }

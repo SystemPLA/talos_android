@@ -27,7 +27,6 @@ import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.support.SupportAppNavigator;
-import timber.log.Timber;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -78,6 +77,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
         navigatorHolder.removeNavigator();
         super.onPause();
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -26,4 +26,8 @@ public class ToolsPresenter extends MvpPresenter<ToolsView> {
 
         getViewState().startCalculator();
     }
+
+    public void setTitle() {
+        getViewState().setToolbarTitle("Инструменты");
+    }
 }

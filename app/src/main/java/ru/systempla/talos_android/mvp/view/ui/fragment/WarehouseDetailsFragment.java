@@ -2,6 +2,9 @@ package ru.systempla.talos_android.mvp.view.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -49,22 +52,55 @@ public class WarehouseDetailsFragment extends MvpAppCompatFragment implements Wa
     @BindView(R.id.text_count_warehouse)
     TextView productCount;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.detail_warehouse_item_fragment, container, false);
-        ButterKnife.bind(this, view);
-        return view;
-    }
-
     @ProvidePresenter
     public WarehouseDetailsPresenter providePresenter() {
         WarehouseDetailsPresenter presenter = new WarehouseDetailsPresenter(AndroidSchedulers.mainThread(), (Product) getArguments().getSerializable("product"));
         return presenter;
     }
 
+    @Nullable
     @Override
-    public void setProductTitle(String title) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.detail_warehouse_item_fragment, container, false);
+        ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
+        return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        getActivity().getMenuInflater().inflate(R.menu.warehouse_item_details_menu, menu);
+    }
+
+    @Override
+    public void onDestroy() {
+        setHasOptionsMenu(false);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        presenter.onFragmentResume();
+        super.onResume();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.change_item:
+                presenter.onChangeMenuPressed();
+                return true;
+            case R.id.delete_item:
+                presenter.onDeleteMenuPressed();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
         ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
     }
 

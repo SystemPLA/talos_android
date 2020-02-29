@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import moxy.MvpAppCompatActivity;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
@@ -82,6 +83,7 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
     @Override
     public void onResume() {
         super.onResume();
+        presenter.setTitle();
         presenter.loadWarehouseData();
     }
 
@@ -135,5 +137,10 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
             }
         });
         popupMenu.show();
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
     }
 }

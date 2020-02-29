@@ -86,4 +86,8 @@ public class ShipmentsPresenter extends MvpPresenter<ShipmentsView> {
 
         }
     }
+
+    public void setTitle() {
+        getViewState().setToolbarTitle("Отгрузки");
+    }
 }

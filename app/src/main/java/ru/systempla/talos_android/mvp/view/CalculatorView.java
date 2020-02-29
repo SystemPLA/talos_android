@@ -7,6 +7,7 @@ import moxy.viewstate.strategy.StateStrategyType;
 @StateStrategyType(value = AddToEndStrategy.class)
 public interface CalculatorView extends MvpView {
 
+    void setToolbarTitle(String string);
     void showResult(int stairsFrameCount, int passFrameCount, int diagonalConnectionCount,
                     int horizontalConnectionCount, int crossbarCount, int deckCount,
                     int supportsCount, double costPerDay);
