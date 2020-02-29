@@ -14,12 +14,17 @@ import ru.systempla.talos_android.mvp.model.entity.Product;
 import ru.systempla.talos_android.mvp.model.repo.ITalosRepo;
 import ru.systempla.talos_android.mvp.view.WarehouseView;
 import ru.systempla.talos_android.mvp.view.list.WarehouseItemView;
+import ru.systempla.talos_android.navigation.Screens;
+import ru.terrakok.cicerone.Router;
 
 @InjectViewState
 public class WarehousePresenter extends MvpPresenter<WarehouseView> {
 
     @Inject
     ITalosRepo talosRepo;
+
+    @Inject
+    Router router;
 
     private Scheduler mainThreadScheduler;
     private Scheduler ioThreadScheduler;
@@ -42,16 +47,11 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         public int getCount() {
             return warehouseBlocks.size();
         }
+
         @Override
         public PublishSubject<WarehouseItemView> getClickSubject() {
             return clickSubject;
         }
-
-        @Override
-        public PublishSubject<WarehouseItemView> getSubjectMenu() {
-            return clickSubject;
-        }
-
 
 
     }
@@ -68,10 +68,8 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         super.onFirstViewAttach();
         getViewState().init();
 
-//        warehouseListPresenter.getClickSubject().subscribe();
-        warehouseListPresenter.getSubjectMenu().subscribe(itemView -> inflateSubMenu(itemView.getPos()));
+        warehouseListPresenter.getClickSubject().subscribe(itemView -> inflateSubMenu(itemView.getPos()));
     }
-
     private void inflateSubMenu(int position) {
         getViewState().inflateSubmenu(position);
     }
@@ -90,6 +88,10 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
                     getViewState().showMessage("Ошибка загрузки данных");
                     getViewState().hideLoading();
                 });
+    }
+
+    public void onShowMenuPressed(int position) {
+        router.navigateTo(new Screens.DetailsScreen(warehouseListPresenter.warehouseBlocks.get(position)));
     }
 
     public void onChangeMenuPressed(int position) {

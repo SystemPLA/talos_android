@@ -7,5 +7,4 @@ public interface IWarehouseListPresenter {
     void bind(WarehouseItemView view);
     int getCount();
     PublishSubject<WarehouseItemView> getClickSubject();
-    PublishSubject<WarehouseItemView> getSubjectMenu();
 }

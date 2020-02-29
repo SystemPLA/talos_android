@@ -32,4 +32,10 @@
 
     <string name="delete_item">Удалить</string>
     <string name="change_item">Изменить</string>
+    <string name="id_label">ID в базе данных</string>
+    <string name="product_name_label">Название товара</string>
+    <string name="product_source_label">Поставщик товара</string>
+    <string name="product_status_label">Тип товара</string>
+    <string name="product_count_label">Количество товара на складе</string>
+    <string name="additional_data">Подробнее</string>
 </resources>

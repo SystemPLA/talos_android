@@ -120,6 +120,9 @@ public class WarehouseFragment extends MvpAppCompatFragment implements Warehouse
         popupMenu.inflate(R.menu.warehouse_item_menu);
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
+                case R.id.show_item:
+                    presenter.onShowMenuPressed(position);
+                    return true;
                 case R.id.change_item:
                     presenter.onChangeMenuPressed(position);
                     return true;

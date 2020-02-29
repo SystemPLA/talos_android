@@ -36,7 +36,6 @@ public class WarehouseRVAdapter extends RecyclerView.Adapter<WarehouseRVAdapter.
         holder.pos = position;
         presenter.bind(holder);
         RxView.clicks(holder.itemView).map(o -> holder).subscribe(presenter.getClickSubject());
-        RxView.longClicks(holder.itemView).map(o -> holder).subscribe(presenter.getSubjectMenu());
     }
 
     @Override

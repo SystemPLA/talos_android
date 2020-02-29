@@ -15,5 +15,6 @@ public interface WarehouseView extends MvpView {
 
     @StateStrategyType(value = OneExecutionStateStrategy.class)
     void showMessage(String text);
+    @StateStrategyType(value = OneExecutionStateStrategy.class)
     void inflateSubmenu(int position);
 }
