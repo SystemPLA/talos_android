@@ -75,21 +75,21 @@ public class WarehouseDetailsFragment extends MvpAppCompatFragment implements Wa
 
     @Override
     public void setProductName(String name) {
-        productId.setText(name);
+        productName.setText(name);
     }
 
     @Override
     public void setProductSource(String source) {
-        productId.setText(source);
+        productSource.setText(source);
     }
 
     @Override
     public void setProductStatus(String status) {
-        productId.setText(status);
+        productStatus.setText(status);
     }
 
     @Override
     public void setProductCount(String count) {
-        productId.setText(count);
+        productCount.setText(count);
     }
 }
