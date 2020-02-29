@@ -101,6 +101,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     }
 
     public void onFabClicked() {
+        router.navigateTo(new Screens.CreationScreen());
     }
 
     public void setTitle() {

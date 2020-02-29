@@ -3,6 +3,7 @@ package ru.systempla.talos_android.navigation;
 import androidx.fragment.app.Fragment;
 
 import ru.systempla.talos_android.mvp.model.entity.Product;
+import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseCreationFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseDetailsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ToolsFragment;
@@ -41,6 +42,12 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return WarehouseDetailsFragment.newInstance(product);
+        }
+    }
+    public static class CreationScreen extends SupportAppScreen {
+        @Override
+        public Fragment getFragment() {
+            return WarehouseCreationFragment.newInstance();
         }
     }
 }

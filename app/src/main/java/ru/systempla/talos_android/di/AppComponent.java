@@ -6,12 +6,14 @@ import dagger.Component;
 import ru.systempla.talos_android.di.module.AppModule;
 import ru.systempla.talos_android.di.module.CiceroneModule;
 import ru.systempla.talos_android.di.module.RepoModule;
+import ru.systempla.talos_android.mvp.presenter.WarehouseCreationPresenter;
 import ru.systempla.talos_android.mvp.presenter.WarehouseDetailsPresenter;
 import ru.systempla.talos_android.mvp.presenter.MainActivityPresenter;
 import ru.systempla.talos_android.mvp.presenter.ShipmentsPresenter;
 import ru.systempla.talos_android.mvp.presenter.ToolsPresenter;
 import ru.systempla.talos_android.mvp.presenter.WarehousePresenter;
 import ru.systempla.talos_android.mvp.view.ui.MainActivity;
+import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseCreationFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseDetailsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ToolsFragment;
@@ -34,4 +36,6 @@ public interface AppComponent {
     void inject(ToolsPresenter toolsPresenter);
     void inject(WarehouseDetailsFragment detailsFragment);
     void inject(WarehouseDetailsPresenter warehouseDetailsPresenter);
+    void inject(WarehouseCreationFragment warehouseCreationFragment);
+    void inject(WarehouseCreationPresenter warehouseCreationPresenter);
 }
