@@ -8,6 +8,7 @@ import ru.systempla.talos_android.mvp.model.api.IDataSource;
 import ru.systempla.talos_android.mvp.model.entity.InfoData;
 import ru.systempla.talos_android.mvp.model.entity.Order;
 import ru.systempla.talos_android.mvp.model.entity.Product;
+import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 import timber.log.Timber;
 
 public class TalosRepo implements ITalosRepo {
@@ -34,6 +35,11 @@ public class TalosRepo implements ITalosRepo {
     }
 
     @Override
+    public Single<List<StorageOperation>> loadStorageOperations() {
+        return api.loadStorageOperations();
+    }
+
+    @Override
     public Single<Product> loadProducts(int id) {
         return api.loadProducts(id);
     }
@@ -46,6 +52,11 @@ public class TalosRepo implements ITalosRepo {
     @Override
     public Single<InfoData> loadInfoData(int id) {
         return api.loadInfoData(id);
+    }
+
+    @Override
+    public Single<StorageOperation> loadStorageOperations(int id) {
+        return api.loadStorageOperations(id);
     }
 
     @Override
@@ -64,6 +75,11 @@ public class TalosRepo implements ITalosRepo {
     }
 
     @Override
+    public Completable createStorageOperation(StorageOperation storageOperation) {
+        return api.createStorageOperation(storageOperation);
+    }
+
+    @Override
     public Completable editProduct(int id, Product product) {
         return api.editProduct(id, product);
     }
@@ -79,6 +95,11 @@ public class TalosRepo implements ITalosRepo {
     }
 
     @Override
+    public Completable editStorageOperation(int id, StorageOperation storageOperation) {
+        return api.editStorageOperation(id, storageOperation);
+    }
+
+    @Override
     public Completable deleteProduct(int id) {
         return api.deleteProduct(id);
     }
@@ -91,5 +112,10 @@ public class TalosRepo implements ITalosRepo {
     @Override
     public Completable deleteInfoData(int id) {
         return api.deleteInfoData(id);
+    }
+
+    @Override
+    public Completable deleteStorageOperation(int id) {
+        return api.deleteStorageOperation(id);
     }
 }
