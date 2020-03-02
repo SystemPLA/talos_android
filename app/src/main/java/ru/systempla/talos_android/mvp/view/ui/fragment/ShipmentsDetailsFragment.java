@@ -1,5 +1,6 @@
 package ru.systempla.talos_android.mvp.view.ui.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -7,11 +8,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.w3c.dom.Text;
+
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -24,10 +30,12 @@ import ru.systempla.talos_android.R;
 import ru.systempla.talos_android.mvp.App;
 import ru.systempla.talos_android.mvp.model.entity.Product;
 import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
+import ru.systempla.talos_android.mvp.presenter.ShipmentsDetailsPresenter;
 import ru.systempla.talos_android.mvp.presenter.WarehouseDetailsPresenter;
+import ru.systempla.talos_android.mvp.view.ShipmentDetailsView;
 import ru.systempla.talos_android.mvp.view.WarehouseDetailsView;
 
-public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements WarehouseDetailsView {
+public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements ShipmentDetailsView {
 
     public static ShipmentsDetailsFragment newInstance(StorageOperation storageOperation) {
         ShipmentsDetailsFragment fragment = new ShipmentsDetailsFragment();
@@ -38,26 +46,76 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Wa
     }
 
     @InjectPresenter
-    WarehouseDetailsPresenter presenter;
+    ShipmentsDetailsPresenter presenter;
 
-    @BindView(R.id.text_id_warehouse)
-    TextView productId;
+    @BindDrawable(R.drawable.ic_checked)
+    Drawable icChecked;
 
-    @BindView(R.id.text_name_warehouse)
-    TextView productName;
+    @BindDrawable(R.drawable.ic_unchecked)
+    Drawable icUnchecked;
 
-    @BindView(R.id.text_source_warehouse)
-    TextView productSource;
+    @BindView(R.id.text_id_shipment)
+    TextView shipmentId;
 
-    @BindView(R.id.text_status_warehouse)
-    TextView productStatus;
+    @BindView(R.id.text_status_shipment)
+    ImageView shipmentStatus;
 
-    @BindView(R.id.text_count_warehouse)
-    TextView productCount;
+    @BindView(R.id.text_date_shipment)
+    TextView shipmentDate;
+
+    @BindView(R.id.text_client_shipment)
+    TextView shipmentClient;
+
+    @BindView(R.id.text_client_type_shipment)
+    TextView shipmentType;
+
+    @BindView(R.id.text_stairs_frame)
+    TextView shipmentStairsFrameCount;
+
+    @BindView(R.id.text_stairs_frame_bad)
+    TextView shipmentBadStairsFrameCount;
+
+    @BindView(R.id.text_pass_frame)
+    TextView shipmentPassFrameCount;
+
+    @BindView(R.id.text_pass_frame_bad)
+    TextView shipmentBadPassFrameCount;
+
+    @BindView(R.id.text_diagonal_connection)
+    TextView shipmentDiagonalConnectionCount;
+
+    @BindView(R.id.text_diagonal_connection_bad)
+    TextView shipmentBadDiagonalConnectionCount;
+
+    @BindView(R.id.text_horizontal_connection)
+    TextView shipmentHorizontalConnectionCount;
+
+    @BindView(R.id.text_horizontal_connection_bad)
+    TextView shipmentBadHorizontalConnectionCount;
+
+    @BindView(R.id.text_crossbar)
+    TextView shipmentCrossbar;
+
+    @BindView(R.id.text_crossbar_bad)
+    TextView shipmentBadCrossbar;
+
+    @BindView(R.id.text_deck)
+    TextView shipmentDeckCount;
+
+    @BindView(R.id.text_deck_bad)
+    TextView shipmentBadDeckCount;
+
+    @BindView(R.id.text_support)
+    TextView shipmentSupportsCount;
+
+    @BindView(R.id.text_support_bad)
+    TextView shipmentBadSupportsCount;
+
 
     @ProvidePresenter
-    public WarehouseDetailsPresenter providePresenter() {
-        WarehouseDetailsPresenter presenter = new WarehouseDetailsPresenter(AndroidSchedulers.mainThread(), Schedulers.io(), (Product) getArguments().getSerializable("storageOperation"));
+    public ShipmentsDetailsPresenter providePresenter() {
+
+        ShipmentsDetailsPresenter presenter = new ShipmentsDetailsPresenter(AndroidSchedulers.mainThread(), Schedulers.io(), (StorageOperation) getArguments().getSerializable("storageOperation"));
         App.getInstance().getAppComponent().inject(presenter);
         return presenter;
     }
@@ -65,24 +123,12 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Wa
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.detail_warehouse_item_fragment, container, false);
+        View view = inflater.inflate(R.layout.detail_shipment_item_fragment, container, false);
         ButterKnife.bind(this, view);
         App.getInstance().getAppComponent().inject(this);
-        setHasOptionsMenu(true);
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        getActivity().getMenuInflater().inflate(R.menu.warehouse_item_details_menu, menu);
-    }
-
-    @Override
-    public void onDestroy() {
-        setHasOptionsMenu(false);
-        super.onDestroy();
-    }
 
     @Override
     public void onResume() {
@@ -90,19 +136,6 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Wa
         super.onResume();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.change_item:
-                presenter.onChangeMenuPressed();
-                return true;
-            case R.id.delete_item:
-                presenter.onDeleteMenuPressed();
-                return true;
-            default:
-                return false;
-        }
-    }
 
     @Override
     public void setToolbarTitle(String title) {
@@ -110,27 +143,101 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Wa
     }
 
     @Override
-    public void setProductId(String id) {
-        productId.setText(id);
+    public void setShipmentId(String id) {
+        shipmentId.setText(id);
     }
 
     @Override
-    public void setProductName(String name) {
-        productName.setText(name);
+    public void setShipmentDate(String date) {
+        shipmentDate.setText(date);
     }
 
     @Override
-    public void setProductSource(String source) {
-        productSource.setText(source);
+    public void setShipmentType(String type) {
+        shipmentType.setText(type);
     }
 
     @Override
-    public void setProductStatus(String status) {
-        productStatus.setText(status);
+    public void setShipmentClient(String client) {
+        shipmentClient.setText(client);
     }
 
     @Override
-    public void setProductCount(String count) {
-        productCount.setText(count);
+    public void setShipmentStairsFrameCount(String count) {
+        shipmentStairsFrameCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadStairsFrameCount(String count) {
+        shipmentBadStairsFrameCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentPassFrameCount(String count) {
+        shipmentPassFrameCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadPassFrameCount(String count) {
+        shipmentBadPassFrameCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentDiagonalConnectionCount(String count) {
+        shipmentDiagonalConnectionCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadDiagonalConnectionCount(String count) {
+        shipmentBadDiagonalConnectionCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentHorizontalConnectionCount(String count) {
+        shipmentHorizontalConnectionCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadHorizontalConnectionCount(String count) {
+        shipmentBadHorizontalConnectionCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentCrossbarCount(String count) {
+        shipmentCrossbar.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadCrossbarCount(String count) {
+        shipmentBadCrossbar.setText(count);
+    }
+
+    @Override
+    public void setShipmentDeckCount(String count) {
+        shipmentDeckCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadDeckCount(String count) {
+        shipmentBadDeckCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentSupportsCount(String count) {
+        shipmentSupportsCount.setText(count);
+    }
+
+    @Override
+    public void setShipmentBadSupportsCount(String count) {
+        shipmentBadSupportsCount.setText(count);
+    }
+
+    @Override
+    public void setPerformedTo(Boolean status) {
+        if (status) {
+            shipmentStatus.setImageDrawable(icChecked);
+        } else {
+            shipmentStatus.setImageDrawable(icUnchecked);
+        }
     }
 }

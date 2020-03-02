@@ -44,7 +44,7 @@
     <string name="status_label">Статус</string>
     <string name="date_label">Дата</string>
     <string name="client_label">Клиент</string>
-    <string name="client_type_label">Тип клиента</string>
+    <string name="client_type_label">Тип операции</string>
     <string name="stairs_frame">Рама с лестницей (42х1,5)</string>
     <string name="normal_type">бу</string>
     <string name="bad_type">брак</string>
