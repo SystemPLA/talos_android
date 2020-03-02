@@ -51,6 +51,7 @@ public class WarehouseDetailsPresenter extends MvpPresenter<WarehouseDetailsView
     }
 
     public void onChangeMenuPressed() {
+        router.navigateTo(new Screens.EditScreen(product));
     }
 
     public void onDeleteMenuPressed() {

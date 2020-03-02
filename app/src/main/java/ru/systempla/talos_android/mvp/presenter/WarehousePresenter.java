@@ -95,6 +95,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     }
 
     public void onChangeMenuPressed(int position) {
+        router.navigateTo(new Screens.EditScreen(warehouseListPresenter.warehouseBlocks.get(position)));
     }
 
     public void onDeleteMenuPressed(int position) {

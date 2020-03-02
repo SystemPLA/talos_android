@@ -11,12 +11,14 @@ import ru.systempla.talos_android.mvp.presenter.WarehouseDetailsPresenter;
 import ru.systempla.talos_android.mvp.presenter.MainActivityPresenter;
 import ru.systempla.talos_android.mvp.presenter.ShipmentsPresenter;
 import ru.systempla.talos_android.mvp.presenter.ToolsPresenter;
+import ru.systempla.talos_android.mvp.presenter.WarehouseEditPresenter;
 import ru.systempla.talos_android.mvp.presenter.WarehousePresenter;
 import ru.systempla.talos_android.mvp.view.ui.MainActivity;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseCreationFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseDetailsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ToolsFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseEditFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseFragment;
 
 @Singleton
@@ -38,4 +40,6 @@ public interface AppComponent {
     void inject(WarehouseDetailsPresenter warehouseDetailsPresenter);
     void inject(WarehouseCreationFragment warehouseCreationFragment);
     void inject(WarehouseCreationPresenter warehouseCreationPresenter);
+    void inject(WarehouseEditFragment warehouseEditFragment);
+    void inject(WarehouseEditPresenter warehouseEditPresenter);
 }

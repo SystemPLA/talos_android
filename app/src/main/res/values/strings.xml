@@ -40,4 +40,5 @@
     <string name="additional_data">Подробнее</string>
     <string name="create_button">Создать</string>
     <string name="create_item_menu">Создать</string>
+    <string name="edit_button">Изменить</string>
 </resources>

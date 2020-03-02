@@ -7,6 +7,7 @@ import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseCreationFragment
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseDetailsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ToolsFragment;
+import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseEditFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseFragment;
 import ru.terrakok.cicerone.android.support.SupportAppScreen;
 
@@ -48,6 +49,18 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return WarehouseCreationFragment.newInstance();
+        }
+    }
+    public static class EditScreen extends SupportAppScreen {
+        Product product;
+
+        public EditScreen(Product product) {
+            this.product = product;
+        }
+
+        @Override
+        public Fragment getFragment() {
+            return WarehouseEditFragment.newInstance(product);
         }
     }
 }
