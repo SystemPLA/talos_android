@@ -4,28 +4,29 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.systempla.talos_android.R;
-import ru.systempla.talos_android.mvp.presenter.ShipmentsListPresenter;
+import ru.systempla.talos_android.mvp.presenter.IShipmentsListPresenter;
 import ru.systempla.talos_android.mvp.view.list.ShipmentsItemView;
 
 
 public class ShipmentsAdapter extends RecyclerView.Adapter<ShipmentsAdapter.ShipmentsViewHolder> {
 
-    private final ShipmentsListPresenter presenter;
+    private final IShipmentsListPresenter presenter;
     private ViewGroup parentViewGroup; //для доступа к ресурсам в ShipmentsViewHolder
 
-    public ShipmentsAdapter(ShipmentsListPresenter presenter) {
+    public ShipmentsAdapter(IShipmentsListPresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -39,7 +40,9 @@ public class ShipmentsAdapter extends RecyclerView.Adapter<ShipmentsAdapter.Ship
 
     @Override
     public void onBindViewHolder(@NonNull ShipmentsViewHolder holder, int position) {
-        presenter.bindViewHolder(holder, position);
+        holder.pos = position;
+        presenter.bind(holder);
+        RxView.clicks(holder.itemView).map(o -> holder).subscribe(presenter.getClickSubject());
     }
 
     @Override
@@ -50,6 +53,7 @@ public class ShipmentsAdapter extends RecyclerView.Adapter<ShipmentsAdapter.Ship
 
     public class ShipmentsViewHolder extends RecyclerView.ViewHolder implements ShipmentsItemView {
 
+        int pos = 0;
 
         @BindView(R.id.text_view_shipments_customer)
         TextView shipmentCustomer;
@@ -69,19 +73,15 @@ public class ShipmentsAdapter extends RecyclerView.Adapter<ShipmentsAdapter.Ship
         @BindDrawable(R.drawable.ic_unchecked)
         Drawable icUnchecked;
 
-//        @BindView(R.id.button_shipments_more)
-//        Button buttonMore;
-
-        @OnClick(R.id.button_shipments_more)
-        void onClick() {
-            presenter.showMore();
-        }
-
         private ShipmentsViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
+        @Override
+        public int getPos() {
+            return pos;
+        }
 
         @Override
         public void setCustomer(String customer) {

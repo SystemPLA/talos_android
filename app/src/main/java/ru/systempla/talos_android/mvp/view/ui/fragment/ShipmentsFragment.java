@@ -3,6 +3,8 @@ package ru.systempla.talos_android.mvp.view.ui.fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +28,9 @@ import ru.systempla.talos_android.mvp.view.ui.adapter.ShipmentsAdapter;
 import ru.systempla.talos_android.mvp.view.ui.adapter.WarehouseRVAdapter;
 
 public class ShipmentsFragment extends MvpAppCompatFragment implements ShipmentsView {
+
+    @BindView(R.id.rl_loading)
+    RelativeLayout loadingRelativeLayout;
 
     private ShipmentsAdapter adapter;
     private Unbinder unbinder;
@@ -78,5 +83,25 @@ public class ShipmentsFragment extends MvpAppCompatFragment implements Shipments
     @Override
     public void setToolbarTitle(String title) {
         ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void showLoading() {
+        loadingRelativeLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingRelativeLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updateList() {
+        adapter.notifyDataSetChanged();
     }
 }
