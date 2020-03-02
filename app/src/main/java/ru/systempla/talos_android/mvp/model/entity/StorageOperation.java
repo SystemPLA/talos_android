@@ -2,7 +2,9 @@ package ru.systempla.talos_android.mvp.model.entity;
 
 import com.google.gson.annotations.Expose;
 
-public class StorageOperation {
+import java.io.Serializable;
+
+public class StorageOperation implements Serializable {
 
     @Expose
     private Integer id;

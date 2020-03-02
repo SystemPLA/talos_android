@@ -3,6 +3,8 @@ package ru.systempla.talos_android.navigation;
 import androidx.fragment.app.Fragment;
 
 import ru.systempla.talos_android.mvp.model.entity.Product;
+import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
+import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsDetailsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseCreationFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.WarehouseDetailsFragment;
 import ru.systempla.talos_android.mvp.view.ui.fragment.ShipmentsFragment;
@@ -61,6 +63,18 @@ public class Screens {
         @Override
         public Fragment getFragment() {
             return WarehouseEditFragment.newInstance(product);
+        }
+    }
+    public static class ShipmentDetailsScreen extends SupportAppScreen {
+        StorageOperation storageOperation;
+
+        public ShipmentDetailsScreen(StorageOperation storageOperation) {
+            this.storageOperation = storageOperation;
+        }
+
+        @Override
+        public Fragment getFragment() {
+            return ShipmentsDetailsFragment.newInstance(storageOperation);
         }
     }
 }

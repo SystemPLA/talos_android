@@ -17,6 +17,7 @@ import ru.systempla.talos_android.mvp.view.ShipmentsView;
 import ru.systempla.talos_android.mvp.view.list.ShipmentsItemView;
 import ru.systempla.talos_android.mvp.view.list.WarehouseItemView;
 import ru.systempla.talos_android.mvp.view.ui.adapter.ShipmentsAdapter;
+import ru.systempla.talos_android.navigation.Screens;
 import ru.terrakok.cicerone.Router;
 
 @InjectViewState
@@ -50,6 +51,8 @@ public class ShipmentsPresenter extends MvpPresenter<ShipmentsView> {
         super.onFirstViewAttach();
         getViewState().init();
         loadShipmentsData();
+
+        listShipmentsPresenter.getClickSubject().subscribe(itemView -> shipmentsShowPressed(itemView.getPos()));
     }
 
     //wip
@@ -96,6 +99,10 @@ public class ShipmentsPresenter extends MvpPresenter<ShipmentsView> {
     }
     public void setTitle() {
         getViewState().setToolbarTitle("Отгрузки");
+    }
+
+    private void shipmentsShowPressed(int position){
+        router.navigateTo(new Screens.ShipmentDetailsScreen(listShipmentsPresenter.shipmentsBlocks.get(position)));
     }
 
     //wip
