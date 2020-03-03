@@ -9,11 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
@@ -47,6 +50,9 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Sh
 
     @InjectPresenter
     ShipmentsDetailsPresenter presenter;
+
+    @BindView(R.id.rl_loading)
+    RelativeLayout loadingRelativeLayout;
 
     @BindDrawable(R.drawable.ic_checked)
     Drawable icChecked;
@@ -126,9 +132,29 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Sh
         View view = inflater.inflate(R.layout.detail_shipment_item_fragment, container, false);
         ButterKnife.bind(this, view);
         App.getInstance().getAppComponent().inject(this);
+        setHasOptionsMenu(true);
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        getActivity().getMenuInflater().inflate(R.menu.shipment_item_details_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.accept_item:
+                presenter.onAcceptMenuPressed();
+                return true;
+            case R.id.delete_item:
+                presenter.onDeleteMenuPressed();
+                return true;
+            default:
+                return false;
+        }
+    }
 
     @Override
     public void onResume() {
@@ -136,6 +162,11 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Sh
         super.onResume();
     }
 
+    @Override
+    public void onDestroyView() {
+        setHasOptionsMenu(false);
+        super.onDestroyView();
+    }
 
     @Override
     public void setToolbarTitle(String title) {
@@ -239,5 +270,20 @@ public class ShipmentsDetailsFragment extends MvpAppCompatFragment implements Sh
         } else {
             shipmentStatus.setImageDrawable(icUnchecked);
         }
+    }
+
+    @Override
+    public void showLoading() {
+        loadingRelativeLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingRelativeLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

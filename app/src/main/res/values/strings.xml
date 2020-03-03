@@ -54,4 +54,5 @@
     <string name="crossbar_shipment">Ригель настила, l=3 м.</string>
     <string name="deck_shipment">Настил деревянный 1х1</string>
     <string name="support_shipment">Опора простая (пятки)</string>
+    <string name="accept_shipment">Подтвердить</string>
 </resources>
