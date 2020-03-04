@@ -1,5 +1,7 @@
 package ru.systempla.talos_android.mvp.presenter;
 
+import android.annotation.SuppressLint;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     private Scheduler mainThreadScheduler;
     private Scheduler ioThreadScheduler;
     private WarehouseListPresenter warehouseListPresenter;
+
+    Disposable disposable;
 
     class WarehouseListPresenter implements IWarehouseListPresenter {
 
@@ -64,9 +68,15 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
         getViewState().init();
     }
 
+    @Override
+    public void onDestroy() {
+        disposable.dispose();
+    }
+
+
     public void loadWarehouseData(){
         getViewState().showLoading();
-        Disposable disposable = talosRepo.loadProducts()
+        disposable = talosRepo.loadProducts()
                 .subscribeOn(ioThreadScheduler)
                 .observeOn(mainThreadScheduler)
                 .subscribe(model -> {
@@ -78,5 +88,6 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
                     getViewState().showMessage("Ошибка загрузки данных");
                     getViewState().hideLoading();
                 });
+
     }
 }

@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Calculator.CalculatorFragment">
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/calc_text_view_title"
@@ -44,6 +50,19 @@
 
         app:layout_constraintTop_toBottomOf="@+id/text_view_height" />
 
+    <TextView
+        android:id="@+id/text_view_cost_per_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/calc_cost_per_meter"
+
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lenght" />
+
     <EditText
         android:id="@+id/calc_edit_text_height"
         android:layout_width="90dp"
@@ -67,6 +86,15 @@
         tools:layout_editor_absoluteX="115dp"
         app:layout_constraintLeft_toLeftOf="@+id/calc_edit_text_height"/>
 
+    <EditText
+        android:id="@+id/editTextSquareMeterCost"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@id/text_view_cost_per_day"
+        app:layout_constraintLeft_toLeftOf="@+id/calc_edit_text_lenght" />
+
     <Button
         android:id="@+id/button_calculate"
         android:layout_width="wrap_content"
@@ -75,18 +103,148 @@
         android:text="@string/calc_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calc_edit_text_lenght" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSquareMeterCost" />
 
     <TextView
         android:id="@+id/calc_text_view_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text=""
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:lineSpacingExtra="12sp"
+
+        android:text="Рама с лестницей\nРама проходная\nСвязь диагональная\nСвязь горизонтальная\nРигель настила\nНастил деревянный\nОпоры (пятки)\nСтоимость в день"
+        android:textAllCaps="false"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_calculate" />
 
+    <EditText
+        android:id="@+id/editTextStairsFrame"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toTopOf="@+id/calc_text_view_result" />
+
+    <EditText
+        android:id="@+id/editTextPassFrame"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStairsFrame" />
+
+    <EditText
+        android:id="@+id/editTextDiagonalConnection"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassFrame" />
+
+    <EditText
+        android:id="@+id/editTextHorizontalConnection"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDiagonalConnection" />
+
+    <EditText
+        android:id="@+id/editTextCrossbar"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextHorizontalConnection" />
+
+    <EditText
+        android:id="@+id/editTextDeck"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCrossbar" />
+
+    <EditText
+        android:id="@+id/editTextSupports"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDeck" />
+
+    <EditText
+        android:id="@+id/editTextCostPerDay"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:text="0.0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSupports" />
+
+    <EditText
+        android:id="@+id/editTextCredit40"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:text="0.0"
+        app:layout_constraintStart_toEndOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCostPerDay" />
+
+    <TextView
+        android:id="@+id/textViewCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Залог 40%"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/calc_text_view_result" />
+
+    <TextView
+        android:id="@+id/textViewClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Клиент"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/calc_text_view_result"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCredit" />
+
+    <EditText
+        android:id="@+id/editTextClient"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCredit40"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCredit40" />
+
+    <Button
+        android:id="@+id/button_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отправить"
+        app:layout_constraintStart_toStartOf="@+id/textViewClient"
+        app:layout_constraintTop_toBottomOf="@+id/textViewClient" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,20 +37,21 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
 
 
 
-    public void calculatorStart(String h, String l) {
-        if (!h.equals("") && !l.equals("")) {
+    public void calculatorStart(String h, String l, String squareMeterCost) {
+        if (!h.equals("") && !l.equals("") && !squareMeterCost.equals("")) {
             int height = Integer.parseInt(h);
             int length = Integer.parseInt(l);
+            this.squareMeterCost = Double.parseDouble(squareMeterCost);
 
 
             calculate(height, length);
             getViewState().showResult(stairsFrameCount, passFrameCount, diagonalConnectionCount,
                     horizontalConnectionCount, crossbarCount, deckCount,
-                    supportsCount, costPerDay);
+                    supportsCount, this.costPerDay);
         }
     }
 
-    //код Ильи
+    //код Ильи обновленный
     private void calculate(int height, int length) {
 
         if (height % 2 == 1) height++;
@@ -63,7 +64,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         if (levelCount - 1 > 0) deckLevelCount = levelCount - 1;
 
         stairsFrameCount = (levelCount - 1) * liftCount;
-        passFrameCount = levelCount * ((sectionCount + 1) - deckLevelCount) + deckLevelCount;
+        passFrameCount = levelCount * ((sectionCount + 1) - liftCount) + liftCount;
         diagonalConnectionCount = ((height / 3) * (length / 2)) / 2;
         horizontalConnectionCount = diagonalConnectionCount * 3;
         crossbarCount = deckLevelCount * sectionCount * 2;
