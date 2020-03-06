@@ -71,7 +71,7 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
     @Override
     public void startCalculator() {
 
-        //TODO это я сделаю потом через cicerone
+        //TODO это я сделаю потом через cicerone. UPD:хаха, делать мне нечего)
         CalculatorFragment calculatorFragment = new CalculatorFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, calculatorFragment);

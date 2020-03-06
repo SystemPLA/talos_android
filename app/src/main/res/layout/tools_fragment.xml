@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <Button
@@ -12,13 +12,46 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
 
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/ic_calc_launch"
         android:fontFamily="@font/roboto"
         android:text="@string/calc_launch_button_text"
         android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
 
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_accept_refund"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="64dp"
+        android:background="@drawable/ic_calc_launch"
+        android:fontFamily="@font/roboto"
+        android:text="@string/accept_refund"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_start_calculator" />
+
+    <Button
+        android:id="@+id/button_arriving_of_goods"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="64dp"
+        android:background="@drawable/ic_calc_launch"
+        android:fontFamily="@font/roboto"
+        android:text="@string/arring_of_goods"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_accept_refund" />
 </androidx.constraintlayout.widget.ConstraintLayout>

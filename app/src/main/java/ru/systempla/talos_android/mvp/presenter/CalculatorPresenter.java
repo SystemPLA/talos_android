@@ -2,10 +2,13 @@ package ru.systempla.talos_android.mvp.presenter;
 
 import moxy.InjectViewState;
 import moxy.MvpPresenter;
+import ru.systempla.talos_android.mvp.model.MyModel;
+import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 import ru.systempla.talos_android.mvp.view.CalculatorView;
 
 @InjectViewState
 public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
+    private MyModel myModel;
 
     @Override
     protected void onFirstViewAttach() {
@@ -13,7 +16,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
 
     }
 
-    double squareMeterCost = 0;
+    private double squareMeterCost;
 
     /*Переменные:
     Высота - H;
@@ -32,9 +35,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
     private int deckCount;  //Настил деревянный = (S * D) * 3;
     private int supportsCount;  //Опоры (пятки) = ((L/3) + 1) * 2;
     private double costPerDay;  //стоимость в день
-
-
-
+    private double credit; //TODO добавить расчет залога
 
 
     public void calculatorStart(String h, String l, String squareMeterCost) {
@@ -47,7 +48,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
             calculate(height, length);
             getViewState().showResult(stairsFrameCount, passFrameCount, diagonalConnectionCount,
                     horizontalConnectionCount, crossbarCount, deckCount,
-                    supportsCount, this.costPerDay);
+                    supportsCount, costPerDay, credit);
         }
     }
 
@@ -71,5 +72,25 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         deckCount = sectionCount * deckLevelCount * 3;
         supportsCount = (sectionCount + 1) * 2;
         costPerDay = height * length * squareMeterCost;
+        credit = 0;
+    }
+
+    public void clickSend(String client, String stairsFrames, String passFrames, String diagonalConnections, String horizontalConnections,
+                          String crossbars, String decks, String supports) {
+        myModel = new MyModel();
+
+        if (myModel.sendStorageOperation(new StorageOperation("2020-03-03", client,
+                "Отгрузка", false, Integer.parseInt(stairsFrames),
+                Integer.parseInt(passFrames),
+                Integer.parseInt(diagonalConnections),
+                Integer.parseInt(horizontalConnections),
+                Integer.parseInt(crossbars),
+                Integer.parseInt(decks),
+                Integer.parseInt(supports)))) {
+            getViewState().showSuccess();
+        } else {
+            getViewState().showFailure();
+        }
+
     }
 }

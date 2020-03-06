@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,14 +17,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import ru.systempla.talos_android.R;
-import ru.systempla.talos_android.mvp.model.api.MyApi;
-import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 import ru.systempla.talos_android.mvp.presenter.CalculatorPresenter;
 import ru.systempla.talos_android.mvp.view.CalculatorView;
 
@@ -43,80 +37,49 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         // Required empty public constructor
     }
 
-    @BindView(R.id.calc_edit_text_height)
-    EditText editTextHeight;
+    @BindView(R.id.calc_edit_height)
+    TextInputEditText editHeight;
 
-    @BindView(R.id.calc_edit_text_lenght)
-    EditText editTextLenght;
-    @BindView(R.id.editTextSquareMeterCost)
-    EditText editTextSquareMeterCost;
+    @BindView(R.id.calc_edit_length)
+    TextInputEditText editLength;
+    @BindView(R.id.calc_edit_cost_per_meter)
+    TextInputEditText editSquareMeterCost;
 
 
     //    @BindView(R.id.calc_text_view_result)
 //    TextView textViewResult;
-    @BindView(R.id.editTextStairsFrame)
-    EditText editTextStairsFrame;
-    @BindView(R.id.editTextPassFrame)
-    EditText editTextPassFrame;
-    @BindView(R.id.editTextDiagonalConnection)
-    EditText editTextDiagonalConnection;
-    @BindView(R.id.editTextHorizontalConnection)
-    EditText editTextHorizontalConnection;
-    @BindView(R.id.editTextCrossbar)
-    EditText editTextCrossbar;
-    @BindView(R.id.editTextDeck)
-    EditText editTextDeck;
-    @BindView(R.id.editTextSupports)
-    EditText editTextSupports;
-    @BindView(R.id.editTextCostPerDay)
-    EditText editTextCostPerDay;
+    @BindView(R.id.calc_edit_stairs_frame)
+    TextInputEditText editStairsFrame;
+    @BindView(R.id.calc_edit_pass_frame)
+    TextInputEditText editPassFrame;
+    @BindView(R.id.calc_edit_diagonal_connection)
+    TextInputEditText editDiagonalConnection;
+    @BindView(R.id.calc_edit_horizontal_connection)
+    TextInputEditText editHorizontalConnection;
+    @BindView(R.id.calc_edit_crossbar)
+    TextInputEditText editCrossbar;
+    @BindView(R.id.calc_edit_deck)
+    TextInputEditText editDeck;
+    @BindView(R.id.calc_edit_supports)
+    TextInputEditText editSupports;
+    @BindView(R.id.calc_edit_cost_per_day)
+    TextInputEditText editCostPerDay;
 
-    @BindView(R.id.editTextCredit40)
-    EditText editTextCredit40;
-    @BindView(R.id.editTextClient)
-    EditText editTextClient;
+    @BindView(R.id.calc_edit_credit)
+    TextInputEditText editCredit;
+    @BindView(R.id.calc_edit_client)
+    TextInputEditText editClient;
 
     @OnClick(R.id.button_calculate)
     void onClick() {
-        presenter.calculatorStart(editTextHeight.getText().toString(),
-                editTextLenght.getText().toString(), editTextSquareMeterCost.getText().toString());
+        presenter.calculatorStart(editHeight.getText().toString(),
+                editLength.getText().toString(), editSquareMeterCost.getText().toString());
     }
 
     @OnClick(R.id.button_send)
     void onClickSend() {
-        //Toast.makeText(getContext(), "0", Toast.LENGTH_SHORT).show();
-        Retrofit retrofit;
-        retrofit = new Retrofit.Builder()
-// Базовая часть адреса
-                .baseUrl("http://35.237.102.95:8080/")
-// Конвертер, необходимый для преобразования JSON в объекты
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-// Создаем объект, при помощи которого будем выполнять запросы
-        //Toast.makeText(getContext(), "1", Toast.LENGTH_SHORT).show();
-        MyApi myApi = retrofit.create(MyApi.class);
-        //Toast.makeText(getContext(), "2", Toast.LENGTH_SHORT).show();
-        myApi.sendStorageOperation(new StorageOperation("2020-03-03", editTextClient.getText().toString(),
-                "Отгрузка", false, Integer.parseInt(editTextStairsFrame.getText().toString()),
-                Integer.parseInt(editTextPassFrame.getText().toString()),
-                Integer.parseInt(editTextDiagonalConnection.getText().toString()),
-                Integer.parseInt(editTextHorizontalConnection.getText().toString()),
-                Integer.parseInt(editTextCrossbar.getText().toString()),
-                Integer.parseInt(editTextDeck.getText().toString()),
-                Integer.parseInt(editTextSupports.getText().toString())))
-                .enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(getContext(), "Fail", Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
+        presenter.clickSend(getClientText(), getStairsFrameText(), getPassFrameText(), getDiagonalConnectionText(), getHorizontalConnectionText(),
+                getCrossbarText(), getDeckText(), getSupportsText());
     }
 
 
@@ -132,21 +95,36 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     @Override
     public void showResult(int stairsFrameCount, int passFrameCount, int diagonalConnectionCount,
                            int horizontalConnectionCount, int crossbarCount, int deckCount,
-                           int supportsCount, double costPerDay) {
+                           int supportsCount, double costPerDay, double credit) {
         /*textViewResult.setText(String.format(getString(R.string.calc_result_format),
                 stairsFrameCount, passFrameCount, diagonalConnectionCount,
                 horizontalConnectionCount, crossbarCount, deckCount,
                 supportsCount, costPerDay));*/
         //textViewResult.setVisibility(View.VISIBLE);
-        editTextStairsFrame.setText(((Integer) stairsFrameCount).toString());
-        editTextPassFrame.setText(((Integer) passFrameCount).toString());
-        editTextDiagonalConnection.setText(((Integer) diagonalConnectionCount).toString());
-        editTextHorizontalConnection.setText(((Integer) horizontalConnectionCount).toString());
-        editTextCrossbar.setText(((Integer) crossbarCount).toString());
-        editTextDeck.setText(((Integer) deckCount).toString());
-        editTextSupports.setText(((Integer) supportsCount).toString());
-        editTextCostPerDay.setText(((Double) costPerDay).toString());
-        editTextCredit40.setText(((Double) (costPerDay * 0.4)).toString());
+        editStairsFrame.setText(((Integer) stairsFrameCount).toString());
+        editPassFrame.setText(((Integer) passFrameCount).toString());
+        editDiagonalConnection.setText(((Integer) diagonalConnectionCount).toString());
+        editHorizontalConnection.setText(((Integer) horizontalConnectionCount).toString());
+        editCrossbar.setText(((Integer) crossbarCount).toString());
+        editDeck.setText(((Integer) deckCount).toString());
+        editSupports.setText(((Integer) supportsCount).toString());
+        editCostPerDay.setText(((Double) costPerDay).toString());
+        editCredit.setText(((Double) (credit)).toString());
+    }
+
+    @Override
+    public void showSuccess() {
+        Toast.makeText(getContext(), "Успешно!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showFailure() {
+        Toast.makeText(getContext(), "Ошибка, попробуйте еще раз!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showLoading() {
+        //TODO Сделать загрузку и выбор даты.
     }
 
     @Override
@@ -155,5 +133,43 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         unbinder.unbind();
     }
 
+    private String getStairsFrameText() {
+        return editStairsFrame.getText().toString();
+    }
 
+    private String getPassFrameText() {
+        return editPassFrame.getText().toString();
+    }
+
+    private String getDiagonalConnectionText() {
+        return editDiagonalConnection.getText().toString();
+    }
+
+    private String getHorizontalConnectionText() {
+        return editHorizontalConnection.getText().toString();
+    }
+
+    private String getCrossbarText() {
+        return editCrossbar.getText().toString();
+    }
+
+    private String getDeckText() {
+        return editDeck.getText().toString();
+    }
+
+    private String getSupportsText() {
+        return editSupports.getText().toString();
+    }
+
+    private String getCostPerDayText() {
+        return editCostPerDay.getText().toString();
+    }
+
+    private String getCreditText() {
+        return editCredit.getText().toString();
+    }
+
+    private String getClientText() {
+        return editClient.getText().toString();
+    }
 }
