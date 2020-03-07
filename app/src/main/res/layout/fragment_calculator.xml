@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-44dp">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,7 +15,7 @@
                 android:id="@+id/calc_text_view_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/calc_title"
                 android:textColor="@android:color/black"
@@ -116,7 +112,7 @@
                     android:id="@+id/calc_edit_stairs_frame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_stairs_frame"
+                    android:hint="@string/text_stairs_frame"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +131,7 @@
                     android:id="@+id/calc_edit_pass_frame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_pass_frame"
+                    android:hint="@string/text_pass_frame"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +150,7 @@
                     android:id="@+id/calc_edit_diagonal_connection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_diagonal_connection"
+                    android:hint="@string/text_diagonal_connection"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +169,7 @@
                     android:id="@+id/calc_edit_horizontal_connection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_horizontal_connection"
+                    android:hint="@string/text_horizontal_connection"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -192,7 +188,7 @@
                     android:id="@+id/calc_edit_crossbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_croosbar"
+                    android:hint="@string/text_crossbar"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -211,7 +207,7 @@
                     android:id="@+id/calc_edit_deck"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_deck"
+                    android:hint="@string/text_deck"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -230,7 +226,7 @@
                     android:id="@+id/calc_edit_supports"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_supports"
+                    android:hint="@string/text_supports"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -249,7 +245,7 @@
                     android:id="@+id/calc_edit_cost_per_day"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_cost_per_day"
+                    android:hint="@string/text_cost_per_day"
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -268,7 +264,7 @@
                     android:id="@+id/calc_edit_credit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_credit"
+                    android:hint="@string/text_credit"
                     android:inputType="number|numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -287,7 +283,7 @@
                     android:id="@+id/calc_edit_client"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/calc_client" />
+                    android:hint="@string/text_client" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -312,4 +308,3 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-</FrameLayout>

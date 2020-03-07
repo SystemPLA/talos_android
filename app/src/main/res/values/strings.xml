@@ -13,7 +13,7 @@
 
 
     <string name="launch_calc">Calculate the price</string>
-    <string name="calc_title">Рассчитайте стоимость:</string>
+    <string name="calc_title">Рассчитайте стоимость</string>
     <string name="calc_height">Высота, м</string>
     <string name="calc_length">Длина, м</string>
     <string name="calc_button">Рассчитать</string>
@@ -22,17 +22,23 @@
         = %d\n&crossbar; = %d\n&deck; = %d\n&supports; = %d\n&costPerDay; = %.2f</string>
     <string name="button_more_text">Подробнее</string>
     <string name="calc_cost_per_meter">Стоимость квадратного метра, руб</string>
-    <string name="calc_stairs_frame">Рама с лестницей, шт</string>
-    <string name="calc_pass_frame">Рама проходная, шт</string>
-    <string name="calc_diagonal_connection">Связь диагональная, шт</string>
-    <string name="calc_horizontal_connection">Связь горизонтальная, шт</string>
-    <string name="calc_croosbar">Ригель настила, шт</string>
-    <string name="calc_deck">Настил деревянный, шт</string>
-    <string name="calc_supports">Опоры (пятки), шт</string>
-    <string name="calc_cost_per_day">Аренда в день, руб</string>
-    <string name="calc_credit">Залог, руб</string>
-    <string name="calc_client">Имя клиента</string>
+    <string name="text_stairs_frame">Рама с лестницей, шт</string>
+    <string name="text_pass_frame">Рама проходная, шт</string>
+    <string name="text_diagonal_connection">Связь диагональная, шт</string>
+    <string name="text_horizontal_connection">Связь горизонтальная, шт</string>
+    <string name="text_crossbar">Ригель настила, шт</string>
+    <string name="text_deck">Настил деревянный, шт</string>
+    <string name="text_supports">Опоры (пятки), шт</string>
+    <string name="text_cost_per_day">Аренда в день, руб</string>
+    <string name="text_credit">Залог, руб</string>
+    <string name="text_client">Имя клиента</string>
     <string name="calc_send">ОТПРАВИТЬ НА СЕРВЕР</string>
     <string name="accept_refund">ОФОРМИТЬ ВОЗВРАТ</string>
-    <string name="arring_of_goods">ПРИНЯТЬ ПОСТУПЛЕНИЕ</string>
+    <string name="accept_arriving">ПРИНЯТЬ ПОСТУПЛЕНИЕ</string>
+    <string name="refund_title">Возврат товаров</string>
+    <string name="refund_button_text">ПОДТВЕРДИТЬ ВОЗВРАТ</string>
+    <string name="arriving_title">Поступление товара</string>
+    <string name="arriving_button_text">ПОДТВЕРДИТЬ ПОСТУПЛЕНИЕ</string>
+    <string name="rinstroy">Ринстрой</string>
+    <string name="text_supplier">Поставщик</string>
 </resources>

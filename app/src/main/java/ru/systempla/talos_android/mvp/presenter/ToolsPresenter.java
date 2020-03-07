@@ -23,7 +23,13 @@ public class ToolsPresenter extends MvpPresenter<ToolsView> {
     }
 
     public void startCalculator() {
-
         getViewState().startCalculator();
+    }
+
+    public void startRefund(){
+        getViewState().startRefund();
+    }
+    public void startArriving(){
+        getViewState().startArriving();
     }
 }

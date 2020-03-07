@@ -34,8 +34,18 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
     private Unbinder unbinder;
 
     @OnClick(R.id.button_start_calculator)
-    void onSaveClick() {
+    void onStartClick() {
         presenter.startCalculator();
+    }
+
+    @OnClick(R.id.button_accept_refund)
+    void onRefundClick() {
+        presenter.startRefund();
+    }
+
+    @OnClick(R.id.button_arriving_of_goods)
+    void onArriveClick() {
+        presenter.startArriving();
     }
 
     @ProvidePresenter
@@ -75,6 +85,26 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
         CalculatorFragment calculatorFragment = new CalculatorFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, calculatorFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+        ((MainView)getActivity()).hideBottomNavigation();
+    }
+
+    @Override
+    public void startRefund() {
+        RefundFragment refundFragment = new RefundFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, refundFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+        ((MainView)getActivity()).hideBottomNavigation();
+    }
+
+    @Override
+    public void startArriving() {
+        ArrivingFragment arrivingFragment = new ArrivingFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, arrivingFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
         ((MainView)getActivity()).hideBottomNavigation();
