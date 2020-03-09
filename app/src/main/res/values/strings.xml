@@ -41,4 +41,5 @@
     <string name="arriving_button_text">ПОДТВЕРДИТЬ ПОСТУПЛЕНИЕ</string>
     <string name="rinstroy">Ринстрой</string>
     <string name="text_supplier">Поставщик</string>
+    <string name="text_date">Дата</string>
 </resources>

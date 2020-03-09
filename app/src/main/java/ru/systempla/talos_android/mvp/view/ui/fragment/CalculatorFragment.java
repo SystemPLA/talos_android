@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,6 +22,7 @@ import moxy.presenter.InjectPresenter;
 import ru.systempla.talos_android.R;
 import ru.systempla.talos_android.mvp.presenter.CalculatorPresenter;
 import ru.systempla.talos_android.mvp.view.CalculatorView;
+import ru.systempla.talos_android.mvp.view.ui.DatePicker.MyDatePicker;
 
 
 /**
@@ -32,6 +35,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     CalculatorPresenter presenter;
 
     private Unbinder unbinder;
+    private ArrayList<TextInputEditText> sendFields;
 
     public CalculatorFragment() {
         // Required empty public constructor
@@ -69,6 +73,8 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     TextInputEditText editCredit;
     @BindView(R.id.calc_edit_client)
     TextInputEditText editClient;
+    @BindView(R.id.calc_edit_date)
+    TextInputEditText editDate;
 
     @OnClick(R.id.button_calculate)
     void onClick() {
@@ -78,8 +84,16 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     @OnClick(R.id.button_send)
     void onClickSend() {
-        presenter.clickSend(getClientText(), getStairsFrameText(), getPassFrameText(), getDiagonalConnectionText(), getHorizontalConnectionText(),
+        if (!checkFields(sendFields)) return;
+
+        presenter.clickSend(getDateText(), getClientText(), getStairsFrameText(), getPassFrameText(), getDiagonalConnectionText(), getHorizontalConnectionText(),
                 getCrossbarText(), getDeckText(), getSupportsText());
+    }
+
+    @OnClick(R.id.calc_edit_date)
+    void onClickDate() {
+        new MyDatePicker(getContext(), editDate);
+
     }
 
 
@@ -89,6 +103,11 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_calculator, container, false);
         unbinder = ButterKnife.bind(this, root);
+        makeSendFieldsList();
+
+
+
+
         return root;
     }
 
@@ -124,7 +143,33 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     @Override
     public void showLoading() {
-        //TODO Сделать загрузку и выбор даты.
+        //TODO Сделать загрузку
+    }
+
+
+    private boolean checkFields(ArrayList<TextInputEditText> fieldsToCheck) {
+        boolean result = true;
+        for (int i = 0; i < fieldsToCheck.size(); i++ ) {
+            if (fieldsToCheck.get(i).getText().toString().equals("")) {
+                fieldsToCheck.get(i).setError("Не может быть пустым");
+                result = false;
+            } else {
+                fieldsToCheck.get(i).setError(null);
+            }
+        }
+        return result;
+    }
+    private void makeSendFieldsList(){
+        sendFields = new ArrayList<>();
+        sendFields.add(editStairsFrame);
+        sendFields.add(editPassFrame);
+        sendFields.add(editDiagonalConnection);
+        sendFields.add(editHorizontalConnection);
+        sendFields.add(editCrossbar);
+        sendFields.add(editDeck);
+        sendFields.add(editSupports);
+        sendFields.add(editClient);
+        sendFields.add(editDate);
     }
 
     @Override
@@ -132,6 +177,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         super.onDestroyView();
         unbinder.unbind();
     }
+
 
     private String getStairsFrameText() {
         return editStairsFrame.getText().toString();
@@ -171,5 +217,9 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     private String getClientText() {
         return editClient.getText().toString();
+    }
+
+    private String getDateText() {
+        return editDate.getText().toString();
     }
 }

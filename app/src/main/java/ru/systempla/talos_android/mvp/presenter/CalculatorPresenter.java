@@ -75,11 +75,13 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         credit = 0;
     }
 
-    public void clickSend(String client, String stairsFrames, String passFrames, String diagonalConnections, String horizontalConnections,
+    public void clickSend(String date, String client, String stairsFrames, String passFrames, String diagonalConnections, String horizontalConnections,
                           String crossbars, String decks, String supports) {
+
+
         myModel = new MyModel();
 
-        if (myModel.sendStorageOperation(new StorageOperation("2020-03-03", client,
+        if (myModel.sendStorageOperation(new StorageOperation(date, client,
                 "Отгрузка", false, Integer.parseInt(stairsFrames),
                 Integer.parseInt(passFrames),
                 Integer.parseInt(diagonalConnections),
@@ -93,4 +95,6 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         }
 
     }
+
+
 }

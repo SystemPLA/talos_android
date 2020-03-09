@@ -6,305 +6,325 @@
     android:layout_height="match_parent">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/calc_text_view_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/calc_title"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_height_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_text_view_title">
 
-            <TextView
-                android:id="@+id/calc_text_view_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/calc_title"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_height_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_text_view_title">
+                android:hint="@string/calc_height"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_height"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/calc_height"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_length_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_height_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_length_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_length"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_height_layout">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_length"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/calc_length"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:hint="@string/calc_length"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_cost_per_meter_layout"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_cost_per_meter_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_length_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_cost_per_meter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/calc_cost_per_meter"
+                android:inputType="number|numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_length_layout">
+        <Button
+            android:id="@+id/button_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_calc_launch"
+            android:fontFamily="@font/roboto"
+            android:text="@string/calc_button"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_cost_per_meter_layout" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_cost_per_meter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/calc_cost_per_meter"
-                    android:inputType="number|numberDecimal" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_stairs_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-            <Button
-                android:id="@+id/button_calculate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/ic_calc_launch"
-                android:fontFamily="@font/roboto"
-                android:text="@string/calc_button"
-                android:textColor="@android:color/background_light"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_cost_per_meter_layout" />
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_calculate">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_stairs_frame_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_stairs_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_stairs_frame"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_calculate">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_pass_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_stairs_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_stairs_frame"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_stairs_frame_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_pass_frame_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_pass_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_pass_frame"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_stairs_frame_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_diagonal_connection_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_pass_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_pass_frame"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_pass_frame_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_diagonal_connection_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_diagonal_connection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_diagonal_connection"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_pass_frame_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_horizontal_connection_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_diagonal_connection"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_diagonal_connection"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_diagonal_connection_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_horizontal_connection_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_horizontal_connection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_horizontal_connection"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_diagonal_connection_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_crossbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_horizontal_connection"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_horizontal_connection"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_horizontal_connection_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_crossbar_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_crossbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_crossbar"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_horizontal_connection_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_deck_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_crossbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_crossbar"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_crossbar_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_edit_deck_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_deck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_deck"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_crossbar_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_supports_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_deck"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_deck"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_deck_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_supports_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_supports"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_supports"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_edit_deck_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_cost_per_day_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_supports"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_supports"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_supports_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_cost_per_day_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_cost_per_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_cost_per_day"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_supports_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_credit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_cost_per_day"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_cost_per_day"
-                    android:inputType="numberDecimal" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_cost_per_day_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_credit_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_credit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_credit"
+                android:inputType="number|numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_cost_per_day_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_client_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_credit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_credit"
-                    android:inputType="number|numberDecimal" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_credit_layout">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/calc_client_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_client"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:hint="@string/text_client" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_credit_layout">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_date_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/calc_edit_client"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_client" />
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginEnd="16dp"
 
 
-            <Button
-                android:id="@+id/button_send"
-                android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_client_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-
-                android:background="@drawable/ic_calc_launch"
-                android:fontFamily="@font/roboto"
-                android:text="@string/calc_send"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calc_client_layout" />
+                android:focusable="false"
+                android:hint="@string/text_date" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/button_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/ic_calc_launch"
+            android:fontFamily="@font/roboto"
+            android:text="@string/calc_send"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_date_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
