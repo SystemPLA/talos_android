@@ -62,7 +62,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, Bott
         App.getInstance().getAppComponent().inject(this);
 
         if (savedInstanceState == null) {
-            router.replaceScreen(new Screens.WarehouseScreen());
+            router.replaceScreen(new Screens.ShipmentsScreen());
         }
     }
 
