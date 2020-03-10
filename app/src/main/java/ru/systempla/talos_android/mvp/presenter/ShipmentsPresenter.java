@@ -62,20 +62,6 @@ public class ShipmentsPresenter extends MvpPresenter<ShipmentsView> {
 
         List<StorageOperation> shipmentsBlocks = new ArrayList<>();
 
-//        private List<Shipment> build() {
-//            String[] customers = {"ООО Ромашка", "ООО Василек", "ООО Снежинка", "ИП Денис с района"};
-//            String[] dates = {"04.02.20", "03.02.20", "02.02.20", "01.02.20"};
-//            String[] types = {"Отгрузка", "Возврат", "Отгрузка", "Поступление нового товара"};
-//            Boolean[] statuses = {true, false, true, false};
-//            List<Shipment> abc = new ArrayList<>(customers.length);
-//            for (int i = 0; i < customers.length; i++) {
-//                abc.add(new Shipment(customers[i], dates[i], types[i], statuses[i]));
-//            }
-//            return abc;
-//        }
-
-        //конец заглушки
-
         @Override
         public void bind(ShipmentsItemView view) {
             view.setCustomer(shipmentsBlocks.get(view.getPos()).getCustomerName());
