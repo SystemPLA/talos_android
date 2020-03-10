@@ -98,7 +98,8 @@ public class ShipmentsDetailsPresenter extends MvpPresenter<ShipmentDetailsView>
                     .subscribeOn(ioThreadScheduler)
                     .observeOn(mainThreadScheduler)
                     .subscribe(list -> {
-                        if (storageOperation.getType().equals("Возврат") | storageOperation.getType().equals("Поступление")) {
+                        if (storageOperation.getType().equals("Возврат") | storageOperation.getType().equals("Поступление") |
+                                storageOperation.getType().equals("возврат") | storageOperation.getType().equals("поступление")) {
                             for (int i = 0; i < list.size(); i++) {
                                 switch (list.get(i).getStatus()) {
                                     case "бу": {
