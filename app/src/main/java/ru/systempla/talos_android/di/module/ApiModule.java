@@ -1,5 +1,7 @@
 package ru.systempla.talos_android.di.module;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -20,14 +22,24 @@ public class ApiModule {
 
 @Singleton
 @Provides
-public IDataSource api(/*@Named("clientLogging") OkHttpClient okHttpClient*/) {
+public IDataSource api(@Named("clientLogging") OkHttpClient okHttpClient) {
     return new Retrofit.Builder()
         .baseUrl("http://35.237.102.95:8080/")
-        /*.client(okHttpClient)*/
+        .client(okHttpClient)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(IDataSource.class);
+    }
+
+    @Named("clientLogging")
+    @Singleton
+    @Provides
+    public OkHttpClient okHttpClientLogging(/*HttpLoggingInterceptor loggingInterceptor*/) {
+        return new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                /*.addInterceptor(loggingInterceptor)*/
+                .build();
     }
 
 //    @Singleton
@@ -38,13 +50,5 @@ public IDataSource api(/*@Named("clientLogging") OkHttpClient okHttpClient*/) {
 //        return interceptor;
 //    }
 //
-//    @Named("clientLogging")
-//    @Singleton
-//    @Provides
-//    public OkHttpClient okHttpClientLogging(HttpLoggingInterceptor loggingInterceptor) {
-//        return new OkHttpClient.Builder()
-//                .addInterceptor(loggingInterceptor)
-//                .build();
-//    }
 
 }
