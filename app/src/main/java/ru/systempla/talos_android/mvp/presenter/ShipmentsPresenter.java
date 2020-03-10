@@ -13,6 +13,7 @@ import moxy.MvpPresenter;
 import ru.systempla.talos_android.mvp.model.entity.Product;
 import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 import ru.systempla.talos_android.mvp.model.repo.ITalosRepo;
+import ru.systempla.talos_android.mvp.model.utils.DataListOrganiser;
 import ru.systempla.talos_android.mvp.view.ShipmentsView;
 import ru.systempla.talos_android.mvp.view.list.ShipmentsItemView;
 import ru.systempla.talos_android.mvp.view.list.WarehouseItemView;
@@ -95,6 +96,7 @@ public class ShipmentsPresenter extends MvpPresenter<ShipmentsView> {
     private void loadShipmentsData() {
         getViewState().showLoading();
         Disposable disposable = talosRepo.loadStorageOperations()
+                .map(DataListOrganiser::reverseOrder)
                 .subscribeOn(ioThreadScheduler)
                 .observeOn(mainThreadScheduler)
                 .subscribe(model -> {

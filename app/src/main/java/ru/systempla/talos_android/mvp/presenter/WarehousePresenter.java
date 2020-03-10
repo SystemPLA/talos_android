@@ -13,6 +13,7 @@ import moxy.InjectViewState;
 import moxy.MvpPresenter;
 import ru.systempla.talos_android.mvp.model.entity.Product;
 import ru.systempla.talos_android.mvp.model.repo.ITalosRepo;
+import ru.systempla.talos_android.mvp.model.utils.DataListOrganiser;
 import ru.systempla.talos_android.mvp.view.WarehouseView;
 import ru.systempla.talos_android.mvp.view.list.WarehouseItemView;
 import ru.systempla.talos_android.navigation.Screens;
@@ -78,6 +79,7 @@ public class WarehousePresenter extends MvpPresenter<WarehouseView> {
     public void loadWarehouseData(){
         getViewState().showLoading();
         Disposable disposable = talosRepo.loadProducts()
+                .map(DataListOrganiser::sortWarehouseById)
                 .subscribeOn(ioThreadScheduler)
                 .observeOn(mainThreadScheduler)
                 .subscribe(model -> {
