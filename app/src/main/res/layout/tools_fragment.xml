@@ -28,7 +28,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
 
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/ic_calc_launch"
         android:fontFamily="@font/roboto"
         android:text="@string/accept_refund"
@@ -44,7 +44,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
 
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/ic_calc_launch"
         android:fontFamily="@font/roboto"
         android:text="@string/accept_arriving"
@@ -54,4 +54,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_accept_refund" />
+
+    <Button
+        android:id="@+id/button_defect"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_calc_launch"
+        android:fontFamily="@font/roboto"
+        android:text="@string/defect_button_tools"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_arriving_of_goods" />
+
+    <Button
+        android:id="@+id/button_junk"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_calc_launch"
+        android:fontFamily="@font/roboto"
+        android:text="@string/junk_button_tools"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_defect" />
 </androidx.constraintlayout.widget.ConstraintLayout>

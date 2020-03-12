@@ -29,7 +29,7 @@
     <string name="text_crossbar">Ригель настила, шт</string>
     <string name="text_deck">Настил деревянный, шт</string>
     <string name="text_supports">Опоры (пятки), шт</string>
-    <string name="text_cost_per_day">Аренда в день, руб</string>
+    <string name="text_cost_per_day">Аренда в месяц/сутки, руб</string>
     <string name="text_credit">Залог, руб</string>
     <string name="text_client">Имя клиента</string>
     <string name="calc_send">ОТПРАВИТЬ НА СЕРВЕР</string>
@@ -42,4 +42,10 @@
     <string name="rinstroy">Ринстрой</string>
     <string name="text_supplier">Поставщик</string>
     <string name="text_date">Дата</string>
+    <string name="text_selling">Продажа новые/бу, руб</string>
+    <string name="defect_title">Отбраковать</string>
+    <string name="defect_button_send">Отправить</string>
+    <string name="defect_description">Списать в брак уже учтенные материалы на складе</string>
+    <string name="defect_button_tools">ОТБРАКОВАТЬ</string>
+    <string name="junk_button_tools">УТИЛИЗИРОВАТЬ</string>
 </resources>

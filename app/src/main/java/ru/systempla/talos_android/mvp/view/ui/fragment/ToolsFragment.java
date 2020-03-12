@@ -48,6 +48,16 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
         presenter.startArriving();
     }
 
+    @OnClick(R.id.button_defect)
+    void onDefectClick() {
+        presenter.startDefecting();
+    }
+
+    @OnClick(R.id.button_junk)
+    void onJunkClick() {
+        presenter.startJunking();
+    }
+
     @ProvidePresenter
     public ToolsPresenter providePresenter() {
         ToolsPresenter presenter = new ToolsPresenter(AndroidSchedulers.mainThread(), Schedulers.io());
@@ -105,6 +115,26 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
         ArrivingFragment arrivingFragment = new ArrivingFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment, arrivingFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+        ((MainView)getActivity()).hideBottomNavigation();
+    }
+
+    @Override
+    public void startDefecting() {
+        DefectFragment defectFragment = new DefectFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, defectFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+        ((MainView)getActivity()).hideBottomNavigation();
+    }
+
+    @Override
+    public void startJunking() {
+        JunkFragment junkFragment = new JunkFragment();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, junkFragment);
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
         ((MainView)getActivity()).hideBottomNavigation();

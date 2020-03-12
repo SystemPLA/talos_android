@@ -2,9 +2,13 @@ package ru.systempla.talos_android.mvp.view.ui.fragment;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -36,6 +40,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     private Unbinder unbinder;
     private ArrayList<TextInputEditText> sendFields;
+    private ArrayList<TextInputEditText> calcFields;
 
     public CalculatorFragment() {
         // Required empty public constructor
@@ -71,23 +76,35 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     @BindView(R.id.calc_edit_credit)
     TextInputEditText editCredit;
+    @BindView(R.id.calc_edit_selling)
+    TextInputEditText editSelling;
     @BindView(R.id.calc_edit_client)
     TextInputEditText editClient;
     @BindView(R.id.calc_edit_date)
     TextInputEditText editDate;
 
+    @BindView(R.id.calc_loading_layout)
+    FrameLayout loadingLayout;
+
+
     @OnClick(R.id.button_calculate)
     void onClick() {
         presenter.calculatorStart(editHeight.getText().toString(),
                 editLength.getText().toString(), editSquareMeterCost.getText().toString());
+        if (checkFields(calcFields)) {
+            checkFields(sendFields);
+        }
     }
 
     @OnClick(R.id.button_send)
     void onClickSend() {
         if (!checkFields(sendFields)) return;
 
+
         presenter.clickSend(getDateText(), getClientText(), getStairsFrameText(), getPassFrameText(), getDiagonalConnectionText(), getHorizontalConnectionText(),
                 getCrossbarText(), getDeckText(), getSupportsText());
+
+
     }
 
     @OnClick(R.id.calc_edit_date)
@@ -106,15 +123,13 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         makeSendFieldsList();
 
 
-
-
         return root;
     }
 
     @Override
     public void showResult(int stairsFrameCount, int passFrameCount, int diagonalConnectionCount,
                            int horizontalConnectionCount, int crossbarCount, int deckCount,
-                           int supportsCount, double costPerDay, double credit) {
+                           int supportsCount, double costPerDay, double costPerMonth, double credit, double sellPriceNew, double sellPriceUsed) {
         /*textViewResult.setText(String.format(getString(R.string.calc_result_format),
                 stairsFrameCount, passFrameCount, diagonalConnectionCount,
                 horizontalConnectionCount, crossbarCount, deckCount,
@@ -127,29 +142,46 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         editCrossbar.setText(((Integer) crossbarCount).toString());
         editDeck.setText(((Integer) deckCount).toString());
         editSupports.setText(((Integer) supportsCount).toString());
-        editCostPerDay.setText(((Double) costPerDay).toString());
-        editCredit.setText(((Double) (credit)).toString());
+        editCostPerDay.setText(String.format("%.1f", costPerMonth) + "/" + String.format("%.1f", costPerDay));
+        editCredit.setText((String.format("%.1f", credit)));
+        editSelling.setText(String.format("%.1f", sellPriceNew) + "/" + String.format("%.1f", sellPriceUsed));
     }
 
     @Override
     public void showSuccess() {
         Toast.makeText(getContext(), "Успешно!", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void showFailure() {
         Toast.makeText(getContext(), "Ошибка, попробуйте еще раз!", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
     public void showLoading() {
-        //TODO Сделать загрузку
+
+            loadingLayout.setVisibility(View.VISIBLE);
+
     }
+    @Override
+    public void hideLoading() {
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingLayout.setVisibility(View.GONE);
+            }
+        }, 1000);
+//        loadingLayout.setVisibility(View.GONE);
+    }
+
 
 
     private boolean checkFields(ArrayList<TextInputEditText> fieldsToCheck) {
         boolean result = true;
-        for (int i = 0; i < fieldsToCheck.size(); i++ ) {
+        for (int i = 0; i < fieldsToCheck.size(); i++) {
             if (fieldsToCheck.get(i).getText().toString().equals("")) {
                 fieldsToCheck.get(i).setError("Не может быть пустым");
                 result = false;
@@ -159,7 +191,8 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         }
         return result;
     }
-    private void makeSendFieldsList(){
+
+    private void makeSendFieldsList() {
         sendFields = new ArrayList<>();
         sendFields.add(editStairsFrame);
         sendFields.add(editPassFrame);
@@ -170,6 +203,13 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         sendFields.add(editSupports);
         sendFields.add(editClient);
         sendFields.add(editDate);
+
+        calcFields = new ArrayList<>();
+        calcFields.add(editLength);
+        calcFields.add(editHeight);
+        calcFields.add(editSquareMeterCost);
+
+
     }
 
     @Override

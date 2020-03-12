@@ -1,10 +1,14 @@
 package ru.systempla.talos_android.mvp.presenter;
 
+import android.util.Log;
+
 import moxy.InjectViewState;
 import moxy.MvpPresenter;
 import ru.systempla.talos_android.mvp.model.MyModel;
 import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 import ru.systempla.talos_android.mvp.view.CalculatorView;
+
+import static java.lang.Thread.sleep;
 
 @InjectViewState
 public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
@@ -17,6 +21,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
     }
 
     private double squareMeterCost;
+    private static final String type = "Отгрузка";
 
     /*Переменные:
     Высота - H;
@@ -26,7 +31,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
     Количество подъемов - R (1 подъем на 30 м длины);
     Количество ярусов с настилами - D = F - 1;*/
 
-    //код Ильи
+
     private int stairsFrameCount;   //Рама с лестницей = (F - 1) * R;
     private int passFrameCount;     //Рама проходная = F * ((S + 1) - D) + D;
     private int diagonalConnectionCount;    // Связь диагональная = (H/3 * L/2)/2;
@@ -35,7 +40,19 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
     private int deckCount;  //Настил деревянный = (S * D) * 3;
     private int supportsCount;  //Опоры (пятки) = ((L/3) + 1) * 2;
     private double costPerDay;  //стоимость в день
-    private double credit; //TODO добавить расчет залога
+    private double costPerMonth;
+    private double credit;
+    private double buyPrice;
+    private double sellPriceNew;
+    private double sellPriceUsed;
+    //цены
+    private static final double stairsFramePrice = 767.0d;
+    private static final double passFramePrice = 667.0d;
+    private static final double diagonalConnectionPrice = 368.0d;
+    private static final double horizontalConnectionPrice = 189.0d;
+    private static final double crossbarPrice = 578.0d;
+    private static final double deckPrice = 210.0d;
+    private static final double supportsPrice = 77.0d;
 
 
     public void calculatorStart(String h, String l, String squareMeterCost) {
@@ -48,7 +65,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
             calculate(height, length);
             getViewState().showResult(stairsFrameCount, passFrameCount, diagonalConnectionCount,
                     horizontalConnectionCount, crossbarCount, deckCount,
-                    supportsCount, costPerDay, credit);
+                    supportsCount, costPerDay, costPerMonth, credit, sellPriceNew, sellPriceUsed);
         }
     }
 
@@ -72,29 +89,48 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         deckCount = sectionCount * deckLevelCount * 3;
         supportsCount = (sectionCount + 1) * 2;
         costPerDay = height * length * squareMeterCost;
-        credit = 0;
+
+        costPerMonth = costPerDay * 30;
+        buyPrice = stairsFrameCount * stairsFramePrice + passFrameCount * passFramePrice + diagonalConnectionCount * diagonalConnectionPrice +
+                horizontalConnectionCount * horizontalConnectionPrice + crossbarCount * crossbarPrice + deckCount * deckPrice + supportsCount * supportsPrice;
+        sellPriceNew = 1.15 * buyPrice;
+        credit = 0.4 * sellPriceNew;
+        sellPriceUsed = 0.7 * sellPriceNew;
     }
+
+
 
     public void clickSend(String date, String client, String stairsFrames, String passFrames, String diagonalConnections, String horizontalConnections,
                           String crossbars, String decks, String supports) {
+
+        getViewState().showLoading();
 
 
         myModel = new MyModel();
 
         if (myModel.sendStorageOperation(new StorageOperation(date, client,
-                "Отгрузка", false, Integer.parseInt(stairsFrames),
+                type, false, Integer.parseInt(stairsFrames),
                 Integer.parseInt(passFrames),
                 Integer.parseInt(diagonalConnections),
                 Integer.parseInt(horizontalConnections),
                 Integer.parseInt(crossbars),
                 Integer.parseInt(decks),
                 Integer.parseInt(supports)))) {
+
             getViewState().showSuccess();
+
+            getViewState().hideLoading();
+
         } else {
+
             getViewState().showFailure();
+
+            getViewState().hideLoading();
         }
 
+
     }
-
-
 }
+
+
+

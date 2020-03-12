@@ -15,4 +15,8 @@ public interface ToolsView extends MvpView {
     void startRefund();
 
     void startArriving();
+
+    void startDefecting();
+
+    void startJunking();
 }

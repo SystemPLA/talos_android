@@ -34,6 +34,24 @@ public class ArrivingAndRefundPresenter extends MvpPresenter<ArrivingAndRefundVi
 
     }
 
+    public void clickSendBad(String date, String client, String stairsFrames, String passFrames, String diagonalConnections, String horizontalConnections,
+                          String crossbars, String decks, String supports, String type) {
+
+        if (myModel.sendStorageOperation(new StorageOperation(date, client,
+                type, false,0,0,0,0,0,0,0, Integer.parseInt(stairsFrames),
+                Integer.parseInt(passFrames),
+                Integer.parseInt(diagonalConnections),
+                Integer.parseInt(horizontalConnections),
+                Integer.parseInt(crossbars),
+                Integer.parseInt(decks),
+                Integer.parseInt(supports)))) {
+            getViewState().showSuccess();
+        } else {
+            getViewState().showFailure();
+        }
+
+    }
+
 
 
 }

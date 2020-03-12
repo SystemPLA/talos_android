@@ -8,6 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import ru.systempla.talos_android.mvp.model.api.MyApi;
 import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 
+import static java.lang.Thread.sleep;
+
 public class MyModel {
     private Retrofit retrofit;
     private MyApi myApi;
@@ -34,13 +36,16 @@ public class MyModel {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         });
         th.start();
+
         try {
             th.join();//ждем выполнения, иначе возвращается sendResult раньше времени
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         return sendResult;
     }
 }

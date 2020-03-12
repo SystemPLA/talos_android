@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,16 +99,58 @@
             app:layout_constraintTop_toBottomOf="@+id/calc_edit_cost_per_meter_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_client_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_calculate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_client" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/calc_edit_date_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginEnd="16dp"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_client_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calc_edit_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="@string/text_date" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/calc_edit_stairs_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
 
-            android:layout_marginTop="32dp"
+
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_calculate">
+            app:layout_constraintTop_toBottomOf="@+id/calc_edit_date_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/calc_edit_stairs_frame"
@@ -268,7 +313,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_client_layout"
+            android:id="@+id/calc_selling_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -279,40 +324,21 @@
             app:layout_constraintTop_toBottomOf="@+id/calc_credit_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_client"
+                android:id="@+id/calc_edit_selling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_client" />
+                android:hint="@string/text_selling"
+                android:inputType="number|numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_date_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginEnd="16dp"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_client_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:hint="@string/text_date" />
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
             android:id="@+id/button_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
 
             android:background="@drawable/ic_calc_launch"
             android:fontFamily="@font/roboto"
@@ -322,9 +348,33 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_date_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/calc_selling_layout" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/calc_loading_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackgroundMain"
+            android:visibility="gone"
+            tools:visibility="visible"
+            >
+
+            <ProgressBar
+                android:id="@+id/calc_progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center"
+
+                />
+        </FrameLayout>
+
+    </FrameLayout>
 </ScrollView>
 

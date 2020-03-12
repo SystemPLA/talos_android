@@ -32,4 +32,10 @@ public class ToolsPresenter extends MvpPresenter<ToolsView> {
     public void startArriving(){
         getViewState().startArriving();
     }
+    public void startDefecting() {
+        getViewState().startDefecting();
+    }
+    public void startJunking(){
+        getViewState().startJunking();
+    }
 }
