@@ -1,7 +1,5 @@
 package ru.systempla.talos_android.mvp.presenter;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,8 +57,6 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
     private double supportsPrice = 77.0d;
 
 
-
-
     public void calculatorStart(String h, String l, String squareMeterCost) {
         if (!h.equals("") && !l.equals("") && !squareMeterCost.equals("")) {
             int height = Integer.parseInt(h);
@@ -75,10 +71,10 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         }
     }
 
-    //код Ильи обновленный
+
     private void calculate(int height, int length) {
         updatePrices();
-
+//код Ильи обновленный
         if (height % 2 == 1) height++;
         if (length % 3 == 2) length++;
         if (length % 3 == 1) length--;
@@ -96,7 +92,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         deckCount = sectionCount * deckLevelCount * 3;
         supportsCount = (sectionCount + 1) * 2;
         costPerDay = height * length * squareMeterCost;
-
+//конец кода Ильи
         costPerMonth = costPerDay * 30;
         buyPrice = stairsFrameCount * stairsFramePrice + passFrameCount * passFramePrice + diagonalConnectionCount * diagonalConnectionPrice +
                 horizontalConnectionCount * horizontalConnectionPrice + crossbarCount * crossbarPrice + deckCount * deckPrice + supportsCount * supportsPrice;
@@ -151,6 +147,24 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
             supportsPrice = infoDataList.get(6).getPriceRin();
 
         }
+
+    }
+
+    public List<String> getClients() {
+        myModel = new MyModel();
+        List<StorageOperation> ls;
+        ls = myModel.getStorageOperations();
+
+        List<String> clientList = new ArrayList<>();
+        clientList.add("123");
+        if (ls != null) {
+            for (int i = 0; i < ls.size(); i++) {
+                clientList.add(ls.get(i).getCustomerName());
+            }
+            return clientList;
+        }
+        return clientList;
+
 
     }
 }

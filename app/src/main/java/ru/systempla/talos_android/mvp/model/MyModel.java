@@ -1,6 +1,7 @@
 package ru.systempla.talos_android.mvp.model;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import androidx.annotation.CheckResult;
 
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -24,6 +27,8 @@ public class MyModel {
     private MyApi myApi;
     private boolean sendResult;
     private List<InfoData> infoDataList;
+    List<StorageOperation> storageOperationList;
+
     //TODO сделать синглтон
     public MyModel() {
 
@@ -83,5 +88,30 @@ public class MyModel {
         }
 
         return infoDataList;
+    }
+
+    public List<StorageOperation> getStorageOperations() {
+        Thread th = new Thread(() -> {
+
+
+            try {
+                storageOperationList = myApi.loadOperations().execute().body();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        });
+
+
+        th.start();
+
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return storageOperationList;
     }
 }

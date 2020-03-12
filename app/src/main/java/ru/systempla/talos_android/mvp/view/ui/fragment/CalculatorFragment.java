@@ -89,12 +89,13 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     @OnClick(R.id.button_calculate)
     void onClick() {
-        presenter.calculatorStart(editHeight.getText().toString(),
-                editLength.getText().toString(), editSquareMeterCost.getText().toString());
-        if (checkFields(calcFields)) {
-            checkFields(sendFields);
-        }
-
+//        presenter.calculatorStart(editHeight.getText().toString(),
+//                editLength.getText().toString(), editSquareMeterCost.getText().toString());
+//        if (checkFields(calcFields)) {
+//            checkFields(sendFields);
+//        }
+         Log.d( "228",presenter.getClients().toString());
+       // presenter.getClients();
     }
 
     @OnClick(R.id.button_send)
@@ -163,9 +164,10 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     @Override
     public void showLoading() {
 
-            loadingLayout.setVisibility(View.VISIBLE);
+        loadingLayout.setVisibility(View.VISIBLE);
 
     }
+
     @Override
     public void hideLoading() {
         Handler h = new Handler();
@@ -177,7 +179,6 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         }, 1000);
 
     }
-
 
 
     private boolean checkFields(ArrayList<TextInputEditText> fieldsToCheck) {
