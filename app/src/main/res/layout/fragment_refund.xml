@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".mvp.view.ui.fragment.RefundFragment">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -220,4 +224,24 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/refund_loading_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackgroundMain"
+            android:visibility="gone"
+            tools:visibility="gone"            >
+
+            <ProgressBar
+                android:id="@+id/refund_progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center"
+
+                />
+        </FrameLayout>
+
+    </FrameLayout>
 </ScrollView>

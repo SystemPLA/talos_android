@@ -2,9 +2,13 @@ package ru.systempla.talos_android.mvp.presenter;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import moxy.InjectViewState;
 import moxy.MvpPresenter;
 import ru.systempla.talos_android.mvp.model.MyModel;
+import ru.systempla.talos_android.mvp.model.entity.InfoData;
 import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 import ru.systempla.talos_android.mvp.view.CalculatorView;
 
@@ -46,13 +50,15 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
     private double sellPriceNew;
     private double sellPriceUsed;
     //цены
-    private static final double stairsFramePrice = 767.0d;
-    private static final double passFramePrice = 667.0d;
-    private static final double diagonalConnectionPrice = 368.0d;
-    private static final double horizontalConnectionPrice = 189.0d;
-    private static final double crossbarPrice = 578.0d;
-    private static final double deckPrice = 210.0d;
-    private static final double supportsPrice = 77.0d;
+    private double stairsFramePrice = 767.0d;
+    private double passFramePrice = 667.0d;
+    private double diagonalConnectionPrice = 368.0d;
+    private double horizontalConnectionPrice = 189.0d;
+    private double crossbarPrice = 578.0d;
+    private double deckPrice = 210.0d;
+    private double supportsPrice = 77.0d;
+
+
 
 
     public void calculatorStart(String h, String l, String squareMeterCost) {
@@ -71,6 +77,7 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
 
     //код Ильи обновленный
     private void calculate(int height, int length) {
+        updatePrices();
 
         if (height % 2 == 1) height++;
         if (length % 3 == 2) length++;
@@ -97,7 +104,6 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         credit = 0.4 * sellPriceNew;
         sellPriceUsed = 0.7 * sellPriceNew;
     }
-
 
 
     public void clickSend(String date, String client, String stairsFrames, String passFrames, String diagonalConnections, String horizontalConnections,
@@ -128,6 +134,23 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
             getViewState().hideLoading();
         }
 
+
+    }
+
+    private void updatePrices() {
+        myModel = new MyModel();
+        List<InfoData> infoDataList;
+        infoDataList = myModel.getInfoData();
+        if (infoDataList != null) {
+            stairsFramePrice = infoDataList.get(0).getPriceRin();
+            passFramePrice = infoDataList.get(1).getPriceRin();
+            diagonalConnectionPrice = infoDataList.get(2).getPriceRin();
+            horizontalConnectionPrice = infoDataList.get(3).getPriceRin();
+            crossbarPrice = infoDataList.get(4).getPriceRin();
+            deckPrice = infoDataList.get(5).getPriceRin();
+            supportsPrice = infoDataList.get(6).getPriceRin();
+
+        }
 
     }
 }

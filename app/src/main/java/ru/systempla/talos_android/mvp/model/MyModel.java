@@ -1,11 +1,20 @@
 package ru.systempla.talos_android.mvp.model;
 
+import android.annotation.SuppressLint;
+
+import androidx.annotation.CheckResult;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.systempla.talos_android.mvp.model.api.MyApi;
+import ru.systempla.talos_android.mvp.model.entity.InfoData;
+import ru.systempla.talos_android.mvp.model.entity.Product;
 import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 
 import static java.lang.Thread.sleep;
@@ -14,12 +23,14 @@ public class MyModel {
     private Retrofit retrofit;
     private MyApi myApi;
     private boolean sendResult;
-
+    private List<InfoData> infoDataList;
+    //TODO сделать синглтон
     public MyModel() {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://35.237.102.95:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         myApi = retrofit.create(MyApi.class);
     }
@@ -47,5 +58,30 @@ public class MyModel {
         }
 
         return sendResult;
+    }
+
+    public List<InfoData> getInfoData() {
+
+        @SuppressLint("CheckResult")
+        Thread th = new Thread(() -> {
+
+            myApi.loadInfoData().subscribe(infoData -> {
+                        infoDataList = (infoData);
+                    },
+                    throwable -> {
+                        infoDataList = null;
+                    });
+        });
+
+
+        th.start();
+
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return infoDataList;
     }
 }

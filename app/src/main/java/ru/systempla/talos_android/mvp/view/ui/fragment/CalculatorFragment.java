@@ -94,6 +94,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         if (checkFields(calcFields)) {
             checkFields(sendFields);
         }
+
     }
 
     @OnClick(R.id.button_send)
@@ -174,7 +175,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
                 loadingLayout.setVisibility(View.GONE);
             }
         }, 1000);
-//        loadingLayout.setVisibility(View.GONE);
+
     }
 
 

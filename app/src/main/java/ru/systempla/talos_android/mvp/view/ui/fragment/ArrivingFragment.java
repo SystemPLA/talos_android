@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -20,17 +22,17 @@ import butterknife.Unbinder;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import ru.systempla.talos_android.R;
-import ru.systempla.talos_android.mvp.presenter.ArrivingAndRefundPresenter;
-import ru.systempla.talos_android.mvp.view.ArrivingAndRefundView;
+import ru.systempla.talos_android.mvp.presenter.ArrivingRefundDefectJunkPresenter;
+import ru.systempla.talos_android.mvp.view.ArrivingRefundDefectJunkView;
 import ru.systempla.talos_android.mvp.view.ui.DatePicker.MyDatePicker;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ArrivingFragment extends MvpAppCompatFragment implements ArrivingAndRefundView {
+public class ArrivingFragment extends MvpAppCompatFragment implements ArrivingRefundDefectJunkView {
 
     @InjectPresenter
-    ArrivingAndRefundPresenter presenter;
+    ArrivingRefundDefectJunkPresenter presenter;
 
     private Unbinder unbinder;
 
@@ -60,6 +62,9 @@ public class ArrivingFragment extends MvpAppCompatFragment implements ArrivingAn
     TextInputEditText editDeck;
     @BindView(R.id.arriving_edit_supports)
     TextInputEditText editSupports;
+
+    @BindView(R.id.arriving_loading_layout)
+    FrameLayout loadingLayout;
 
     @OnClick(R.id.button_send_arriving)
     void onClickSend() {
@@ -98,6 +103,19 @@ public class ArrivingFragment extends MvpAppCompatFragment implements ArrivingAn
 
     @Override
     public void showLoading() {
+
+        loadingLayout.setVisibility(View.VISIBLE);
+
+    }
+    @Override
+    public void hideLoading() {
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingLayout.setVisibility(View.GONE);
+            }
+        }, 1000);
 
     }
 

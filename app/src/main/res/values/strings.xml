@@ -29,6 +29,15 @@
     <string name="text_crossbar">Ригель настила, шт</string>
     <string name="text_deck">Настил деревянный, шт</string>
     <string name="text_supports">Опоры (пятки), шт</string>
+
+    <string name="text_stairs_frame_bad">Рама с лестницей БРАК, шт</string>
+    <string name="text_pass_frame_bad">Рама проходная БРАК, шт</string>
+    <string name="text_diagonal_connection_bad">Связь диагональная БРАК, шт</string>
+    <string name="text_horizontal_connection_bad">Связь горизонтальная БРАК, шт</string>
+    <string name="text_crossbar_bad">Ригель настила БРАК, шт</string>
+    <string name="text_deck_bad">Настил деревянный БРАК, шт</string>
+    <string name="text_supports_bad">Опоры (пятки) БРАК, шт</string>
+
     <string name="text_cost_per_day">Аренда в месяц/сутки, руб</string>
     <string name="text_credit">Залог, руб</string>
     <string name="text_client">Имя клиента</string>
@@ -48,4 +57,7 @@
     <string name="defect_description">Списать в брак уже учтенные материалы на складе</string>
     <string name="defect_button_tools">ОТБРАКОВАТЬ</string>
     <string name="junk_button_tools">УТИЛИЗИРОВАТЬ</string>
+    <string name="junk_title">Утилизация</string>
+    <string name="junk_description">Списать с учета  неремонтопригодные материалы</string>
+    <string name="junk_button_send">УТИЛИЗИРОВАТЬ</string>
 </resources>

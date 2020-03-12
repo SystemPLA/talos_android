@@ -1,9 +1,11 @@
 package ru.systempla.talos_android.mvp.view.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -19,17 +21,17 @@ import butterknife.Unbinder;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import ru.systempla.talos_android.R;
-import ru.systempla.talos_android.mvp.presenter.ArrivingAndRefundPresenter;
-import ru.systempla.talos_android.mvp.view.ArrivingAndRefundView;
+import ru.systempla.talos_android.mvp.presenter.ArrivingRefundDefectJunkPresenter;
+import ru.systempla.talos_android.mvp.view.ArrivingRefundDefectJunkView;
 import ru.systempla.talos_android.mvp.view.ui.DatePicker.MyDatePicker;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RefundFragment extends MvpAppCompatFragment implements ArrivingAndRefundView {
+public class RefundFragment extends MvpAppCompatFragment implements ArrivingRefundDefectJunkView {
 
     @InjectPresenter
-    ArrivingAndRefundPresenter presenter;
+    ArrivingRefundDefectJunkPresenter presenter;
 
     private Unbinder unbinder;
 
@@ -59,6 +61,9 @@ public class RefundFragment extends MvpAppCompatFragment implements ArrivingAndR
     TextInputEditText editDeck;
     @BindView(R.id.refund_edit_supports)
     TextInputEditText editSupports;
+
+    @BindView(R.id.refund_loading_layout)
+    FrameLayout loadingLayout;
 
     @OnClick(R.id.button_send_refund)
     void onClickSend() {
@@ -97,6 +102,19 @@ public class RefundFragment extends MvpAppCompatFragment implements ArrivingAndR
 
     @Override
     public void showLoading() {
+
+        loadingLayout.setVisibility(View.VISIBLE);
+
+    }
+    @Override
+    public void hideLoading() {
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingLayout.setVisibility(View.GONE);
+            }
+        }, 1000);
 
     }
 
