@@ -28,21 +28,17 @@ public class MainActivityPresenter extends MvpPresenter<MainView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         getViewState().init();
-        getViewState().setToolbarTitle("Склад");
     }
 
     public void navigateToWarehouse(){
-        getViewState().setToolbarTitle("Склад");
         router.replaceScreen(new Screens.WarehouseScreen());
     }
 
     public void navigateToShipments(){
-        getViewState().setToolbarTitle("Отгрузки");
         router.replaceScreen(new Screens.ShipmentsScreen());
     }
 
     public void navigateToTools(){
-        getViewState().setToolbarTitle("Инструменты");
         router.replaceScreen(new Screens.ToolsScreen());
     }
 }

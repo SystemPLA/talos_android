@@ -1,6 +1,5 @@
 package ru.systempla.talos_android.mvp.view.ui.adapter;
 
-import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

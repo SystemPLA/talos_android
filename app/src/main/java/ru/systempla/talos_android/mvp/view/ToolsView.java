@@ -9,6 +9,7 @@ import moxy.viewstate.strategy.StateStrategyType;
 public interface ToolsView extends MvpView {
     @StateStrategyType(value = AddToEndSingleStrategy.class)
     void init();
+	void setToolbarTitle(String string);
 
     void startCalculator();
 

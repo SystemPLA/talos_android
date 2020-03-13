@@ -3,7 +3,9 @@ package ru.systempla.talos_android.mvp.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StorageOperation {
+import java.io.Serializable;
+
+public class StorageOperation  implements Serializable {
     @SerializedName("id")
     @Expose
     private int id;
@@ -18,7 +20,7 @@ public class StorageOperation {
     private String type;
     @SerializedName("performed")
     @Expose
-    private boolean isPerformed;
+    private boolean performed;
     @SerializedName("stairsFrameCount")
     @Expose
     private int stairsFrameCount;
@@ -98,8 +100,62 @@ public class StorageOperation {
     private Integer deckBadCount;
     @Expose
     private Integer supportsBadCount;
+
     @Expose
-    private Boolean isPerformed;*/
+    private Boolean performed;*/
+
+public StorageOperation(String date, String customerName, String type, Integer stairsFrameCount,
+                            Integer passFrameCount, Integer diagonalConnectionCount, Integer horizontalConnectionCount,
+                            Integer crossbarCount, Integer deckCount, Integer supportsCount, Integer stairsFrameBadCount,
+                            Integer passFrameBadCount, Integer diagonalConnectionBadCount,
+                            Integer horizontalConnectionBadCount, Integer crossbarBadCount, Integer deckBadCount,
+                            Integer supportsBadCount, Boolean performed) {
+        this.date = date;
+        this.customerName = customerName;
+        this.type = type;
+        this.stairsFrameCount = stairsFrameCount;
+        this.passFrameCount = passFrameCount;
+        this.diagonalConnectionCount = diagonalConnectionCount;
+        this.horizontalConnectionCount = horizontalConnectionCount;
+        this.crossbarCount = crossbarCount;
+        this.deckCount = deckCount;
+        this.supportsCount = supportsCount;
+        this.stairsFrameBadCount = stairsFrameBadCount;
+        this.passFrameBadCount = passFrameBadCount;
+        this.diagonalConnectionBadCount = diagonalConnectionBadCount;
+        this.horizontalConnectionBadCount = horizontalConnectionBadCount;
+        this.crossbarBadCount = crossbarBadCount;
+        this.deckBadCount = deckBadCount;
+        this.supportsBadCount = supportsBadCount;
+        this.performed = performed;
+    }
+
+ public StorageOperation(Integer id, String date, String customerName, String type, Integer stairsFrameCount,
+                            Integer passFrameCount, Integer diagonalConnectionCount, Integer horizontalConnectionCount,
+                            Integer crossbarCount, Integer deckCount, Integer supportsCount, Integer stairsFrameBadCount,
+                            Integer passFrameBadCount, Integer diagonalConnectionBadCount,
+                            Integer horizontalConnectionBadCount, Integer crossbarBadCount, Integer deckBadCount,
+                            Integer supportsBadCount, Boolean performed) {
+        this.id = id;
+        this.date = date;
+        this.customerName = customerName;
+        this.type = type;
+        this.stairsFrameCount = stairsFrameCount;
+        this.passFrameCount = passFrameCount;
+        this.diagonalConnectionCount = diagonalConnectionCount;
+        this.horizontalConnectionCount = horizontalConnectionCount;
+        this.crossbarCount = crossbarCount;
+        this.deckCount = deckCount;
+        this.supportsCount = supportsCount;
+        this.stairsFrameBadCount = stairsFrameBadCount;
+        this.passFrameBadCount = passFrameBadCount;
+        this.diagonalConnectionBadCount = diagonalConnectionBadCount;
+        this.horizontalConnectionBadCount = horizontalConnectionBadCount;
+        this.crossbarBadCount = crossbarBadCount;
+        this.deckBadCount = deckBadCount;
+        this.supportsBadCount = supportsBadCount;
+        this.performed = performed;
+    }
 
     public StorageOperation(String date, String customerName, String type, boolean isPerformed, int stairsFrameCount,
                             int passFrameCount, int diagonalConnectionCount, int horizontalConnectionCount, int crossbarCount,
@@ -110,7 +166,7 @@ public class StorageOperation {
         this.date = date;
         this.customerName = customerName;
         this.type = type;
-        this.isPerformed = isPerformed;
+        this.performed = isPerformed;
         this.stairsFrameCount = stairsFrameCount;
         this.passFrameCount = passFrameCount;
         this.diagonalConnectionCount = diagonalConnectionCount;
@@ -133,7 +189,7 @@ public class StorageOperation {
         this.date = date;
         this.customerName = customerName;
         this.type = type;
-        this.isPerformed = isPerformed;
+        this.performed = isPerformed;
         this.stairsFrameCount = stairsFrameCount;
         this.passFrameCount = passFrameCount;
         this.diagonalConnectionCount = diagonalConnectionCount;
@@ -143,9 +199,32 @@ public class StorageOperation {
         this.supportsCount = supportsCount;
     }
 
+    @Override
+    public String toString() {
+        return "StorageOperation{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", type='" + type + '\'' +
+                ", stairsFrameCount=" + stairsFrameCount +
+                ", passFrameCount=" + passFrameCount +
+                ", diagonalConnectionCount=" + diagonalConnectionCount +
+                ", horizontalConnectionCount=" + horizontalConnectionCount +
+                ", crossbarCount=" + crossbarCount +
+                ", deckCount=" + deckCount +
+                ", supportsCount=" + supportsCount +
+                ", stairsFrameBadCount=" + stairsFrameBadCount +
+                ", passFrameBadCount=" + passFrameBadCount +
+                ", diagonalConnectionBadCount=" + diagonalConnectionBadCount +
+                ", horizontalConnectionBadCount=" + horizontalConnectionBadCount +
+                ", crossbarBadCount=" + crossbarBadCount +
+                ", deckBadCount=" + deckBadCount +
+                ", supportsBadCount=" + supportsBadCount +
+                ", performed=" + performed +
+                '}';
+    }
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -161,9 +240,7 @@ public class StorageOperation {
         return type;
     }
 
-    public boolean isPerformed() {
-        return isPerformed;
-    }
+   
 
     public int getStairsFrameCount() {
         return stairsFrameCount;
@@ -238,7 +315,7 @@ public class StorageOperation {
     }
 
     public void setPerformed(boolean performed) {
-        isPerformed = performed;
+        this.performed = performed;
     }
 
     public void setStairsFrameCount(int stairsFrameCount) {
@@ -295,5 +372,8 @@ public class StorageOperation {
 
     public void setSupportsBadCount(int supportsBadCount) {
         this.supportsBadCount = supportsBadCount;
+    }
+ public Boolean getPerformed() {
+        return performed;
     }
 }

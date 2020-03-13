@@ -3,6 +3,8 @@ package ru.systempla.talos_android.mvp.view.ui.fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import moxy.MvpAppCompatActivity;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
@@ -25,6 +28,9 @@ import ru.systempla.talos_android.mvp.view.ui.adapter.ShipmentsAdapter;
 import ru.systempla.talos_android.mvp.view.ui.adapter.WarehouseRVAdapter;
 
 public class ShipmentsFragment extends MvpAppCompatFragment implements ShipmentsView {
+
+    @BindView(R.id.rl_loading)
+    RelativeLayout loadingRelativeLayout;
 
     private ShipmentsAdapter adapter;
     private Unbinder unbinder;
@@ -62,9 +68,40 @@ public class ShipmentsFragment extends MvpAppCompatFragment implements Shipments
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        presenter.setTitle();
+    }
+
+    @Override
     public void init() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ShipmentsAdapter(presenter.getListShipmentsPresenter());
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void showLoading() {
+        loadingRelativeLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingRelativeLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updateList() {
+        adapter.notifyDataSetChanged();
     }
 }

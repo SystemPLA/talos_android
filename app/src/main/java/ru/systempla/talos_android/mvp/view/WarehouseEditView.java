@@ -6,12 +6,15 @@ import moxy.viewstate.strategy.OneExecutionStateStrategy;
 import moxy.viewstate.strategy.StateStrategyType;
 
 @StateStrategyType(value = AddToEndSingleStrategy.class)
-public interface ShipmentsView extends MvpView {
-    void init();
+public interface WarehouseEditView extends MvpView {
+    void setToolbarTitle(String title);
+    void setProductId(String id);
+    void setProductName(String name);
+    void setProductSource(String source);
+    void setProductStatus(String status);
+    void setProductCount(String count);
     void showLoading();
     void hideLoading();
-    void updateList();
-    void setToolbarTitle(String title);
 
     @StateStrategyType(value = OneExecutionStateStrategy.class)
     void showMessage(String text);

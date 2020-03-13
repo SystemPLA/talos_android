@@ -3,9 +3,6 @@ package ru.systempla.talos_android.mvp.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.time.LocalDate;
-import java.time.temporal.TemporalAccessor;
-
 public class Order {
 
     @SerializedName("orderId")
@@ -156,4 +153,5 @@ public class Order {
     public String getOrderStatus() {
         return orderStatus;
     }
+
 }

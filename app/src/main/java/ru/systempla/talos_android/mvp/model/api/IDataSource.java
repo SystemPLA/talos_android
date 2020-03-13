@@ -13,6 +13,7 @@ import retrofit2.http.Path;
 import ru.systempla.talos_android.mvp.model.entity.InfoData;
 import ru.systempla.talos_android.mvp.model.entity.Order;
 import ru.systempla.talos_android.mvp.model.entity.Product;
+import ru.systempla.talos_android.mvp.model.entity.StorageOperation;
 
 public interface IDataSource {
     @GET("api/v1/products/{id}")
@@ -24,6 +25,12 @@ public interface IDataSource {
     @GET("api/v1/info_data/{id}")
     Single<InfoData> loadInfoData(@Path("id") int id);
 
+    @GET("api/v1/operations/{id}")
+    Single<StorageOperation> loadStorageOperations(@Path("id") int id);
+
+    @GET("api/v1/operations")
+    Single<List<StorageOperation>> loadStorageOperations();
+
     @GET("api/v1/products")
     Single<List<Product>> loadProducts();
 
@@ -32,6 +39,9 @@ public interface IDataSource {
 
     @GET("api/v1/info_data")
     Single<List<InfoData>> loadInfoData();
+
+    @POST("api/v1/operations")
+    Completable createStorageOperation(@Body StorageOperation storageOperation);
 
     @POST("api/v1/products")
     Completable createProduct(@Body Product product);
@@ -45,11 +55,17 @@ public interface IDataSource {
     @PUT("api/v1/products/{id}")
     Completable editProduct(@Path("id") int id, @Body Product product);
 
+    @PUT("api/v1/operations/{id}")
+    Completable editStorageOperation(@Path("id") int id, @Body StorageOperation storageOperation);
+
     @PUT("api/v1/orders/{id}")
     Completable editOrder(@Path("id") int id, @Body Order order);
 
     @PUT("api/v1/info_data/{id}")
     Completable editInfoData(@Path("id") int id, @Body InfoData infoData);
+
+    @DELETE("api/v1/operations/{id}")
+    Completable deleteStorageOperation(@Path("id") int id);
 
     @DELETE("api/v1/products/{id}")
     Completable deleteProduct(@Path("id") int id);

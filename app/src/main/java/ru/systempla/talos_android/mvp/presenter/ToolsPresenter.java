@@ -38,4 +38,9 @@ public class ToolsPresenter extends MvpPresenter<ToolsView> {
     public void startJunking(){
         getViewState().startJunking();
     }
+
+    public void setTitle() {
+        getViewState().setToolbarTitle("Инструменты");
+    }
+    
 }

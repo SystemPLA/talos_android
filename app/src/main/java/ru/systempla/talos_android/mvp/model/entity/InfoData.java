@@ -76,4 +76,5 @@ public class InfoData {
     public Double getPriceDzsl() {
         return priceDzsl;
     }
+
 }
