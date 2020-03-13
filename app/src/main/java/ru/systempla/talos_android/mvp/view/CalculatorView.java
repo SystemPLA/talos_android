@@ -9,7 +9,6 @@ import moxy.viewstate.strategy.SkipStrategy;
 import moxy.viewstate.strategy.StateStrategyType;
 
 
-
 @StateStrategyType(value = AddToEndSingleStrategy.class)
 public interface CalculatorView extends MvpView {
     @StateStrategyType(value = OneExecutionStateStrategy.class)
@@ -25,6 +24,8 @@ public interface CalculatorView extends MvpView {
     void showLoading();
 
     void hideLoading();
+  
+    void setToolbarTitle(String string);
 
 
 }

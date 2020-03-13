@@ -1,6 +1,7 @@
 package ru.systempla.talos_android.mvp.model.entity;
 
 import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -63,48 +64,10 @@ public class StorageOperation  implements Serializable {
     @SerializedName("supportsBadCount")
     @Expose
     private int supportsBadCount;
+    @Expose
+    private Boolean performed;
 
-    /*@Expose
-    private Integer id;
-    @Expose
-    private String date;
-    @Expose
-    private String customerName;
-    @Expose
-    private String type;
-    @Expose
-    private Integer stairsFrameCount;
-    @Expose
-    private Integer passFrameCount;
-    @Expose
-    private Integer diagonalConnectionCount;
-    @Expose
-    private Integer horizontalConnectionCount;
-    @Expose
-    private Integer crossbarCount;
-    @Expose
-    private Integer deckCount;
-    @Expose
-    private Integer supportsCount;
-    @Expose
-    private Integer stairsFrameBadCount;
-    @Expose
-    private Integer passFrameBadCount;
-    @Expose
-    private Integer diagonalConnectionBadCount;
-    @Expose
-    private Integer horizontalConnectionBadCount;
-    @Expose
-    private Integer crossbarBadCount;
-    @Expose
-    private Integer deckBadCount;
-    @Expose
-    private Integer supportsBadCount;
-
-    @Expose
-    private Boolean performed;*/
-
-public StorageOperation(String date, String customerName, String type, Integer stairsFrameCount,
+    public StorageOperation(String date, String customerName, String type, Integer stairsFrameCount,
                             Integer passFrameCount, Integer diagonalConnectionCount, Integer horizontalConnectionCount,
                             Integer crossbarCount, Integer deckCount, Integer supportsCount, Integer stairsFrameBadCount,
                             Integer passFrameBadCount, Integer diagonalConnectionBadCount,
@@ -130,7 +93,7 @@ public StorageOperation(String date, String customerName, String type, Integer s
         this.performed = performed;
     }
 
- public StorageOperation(Integer id, String date, String customerName, String type, Integer stairsFrameCount,
+    public StorageOperation(Integer id, String date, String customerName, String type, Integer stairsFrameCount,
                             Integer passFrameCount, Integer diagonalConnectionCount, Integer horizontalConnectionCount,
                             Integer crossbarCount, Integer deckCount, Integer supportsCount, Integer stairsFrameBadCount,
                             Integer passFrameBadCount, Integer diagonalConnectionBadCount,
@@ -239,9 +202,7 @@ public StorageOperation(String date, String customerName, String type, Integer s
     public String getType() {
         return type;
     }
-
-   
-
+  
     public int getStairsFrameCount() {
         return stairsFrameCount;
     }
@@ -377,3 +338,4 @@ public StorageOperation(String date, String customerName, String type, Integer s
         return performed;
     }
 }
+

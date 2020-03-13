@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.Unbinder;
+import moxy.MvpAppCompatActivity;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
 import ru.systempla.talos_android.R;
@@ -246,7 +247,6 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         unbinder.unbind();
     }
 
-
     private String getStairsFrameText() {
         return editStairsFrame.getText().toString();
     }
@@ -289,5 +289,16 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     private String getDateText() {
         return editDate.getText().toString();
+      
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.setTitle();
+    }
+
+    @Override
+    public void setToolbarTitle(String title) {
+        ((MvpAppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+      
     }
 }

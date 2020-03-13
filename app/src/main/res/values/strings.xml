@@ -21,6 +21,7 @@
     <string name="calc_result_format">&stairsFrame; = %d\n&passFrame; = %d\n&diagonalConnection; = %d\n&horizontalConnection;
         = %d\n&crossbar; = %d\n&deck; = %d\n&supports; = %d\n&costPerDay; = %.2f</string>
     <string name="button_more_text">Подробнее</string>
+
     <string name="calc_cost_per_meter">Стоимость квадратного метра, руб</string>
     <string name="text_stairs_frame">Рама с лестницей, шт</string>
     <string name="text_pass_frame">Рама проходная, шт</string>
@@ -39,6 +40,10 @@
     <string name="text_supports_bad">Опоры (пятки) БРАК, шт</string>
 
    <string name="delete_item">Удалить</string>
+
+
+    <string name="delete_item">Удалить</string>
+
     <string name="change_item">Изменить</string>
     <string name="id_label">ID в базе данных</string>
     <string name="product_name_label">Название товара</string>

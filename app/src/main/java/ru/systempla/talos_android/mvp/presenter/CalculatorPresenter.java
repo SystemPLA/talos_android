@@ -183,6 +183,10 @@ public class CalculatorPresenter extends MvpPresenter<CalculatorView> {
         listToDedup.addAll(set);
 
     }
+
+    public void setTitle() {
+        getViewState().setToolbarTitle("Калькулятор");
+    }
 }
 
 

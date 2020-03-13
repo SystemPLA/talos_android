@@ -87,7 +87,6 @@ public class ToolsFragment extends MvpAppCompatFragment implements ToolsView {
 
     @Override
     public void init() {
-        //Саня, привет)
     }
 
     @Override
