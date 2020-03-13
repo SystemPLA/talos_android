@@ -60,4 +60,8 @@
     <string name="junk_title">Утилизация</string>
     <string name="junk_description">Списать с учета  неремонтопригодные материалы</string>
     <string name="junk_button_send">УТИЛИЗИРОВАТЬ</string>
+
+    <string-array name="check_client">
+        <item>"Выбрать из списка"</item>
+    </string-array>
 </resources>

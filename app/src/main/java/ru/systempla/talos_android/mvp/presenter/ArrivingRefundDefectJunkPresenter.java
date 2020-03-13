@@ -1,5 +1,12 @@
 package ru.systempla.talos_android.mvp.presenter;
 
+import androidx.annotation.CheckResult;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import moxy.InjectViewState;
 import moxy.MvpPresenter;
 import ru.systempla.talos_android.mvp.model.MyModel;
@@ -87,7 +94,36 @@ public class ArrivingRefundDefectJunkPresenter extends MvpPresenter<ArrivingRefu
         }
 
     }
+    @CheckResult
+    public List<String> getClients() {
+        //getViewState().showLoading();
+        myModel = new MyModel();
+        List<StorageOperation> ls;
+        ls = myModel.getStorageOperations();
 
+        List<String> clientList = new ArrayList<>();
+        clientList.add("Error");
+        if (ls != null) {
+            for (int i = 0; i < ls.size(); i++) {
+                clientList.add(ls.get(i).getCustomerName());
+            }
+            //getViewState().hideLoading();
+            clearListDublicates(clientList);
+            return clientList;
+        }
+        // getViewState().hideLoading();
+        clearListDublicates(clientList);
+        return clientList;
+
+
+    }
+
+    private void clearListDublicates(List<String> listToDedup){
+        Set<String> set = new HashSet<>(listToDedup);
+        listToDedup.clear();
+        listToDedup.addAll(set);
+
+    }
 
 
 }

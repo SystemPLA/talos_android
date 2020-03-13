@@ -7,11 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ListAdapter;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 import butterknife.Unbinder;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
@@ -86,16 +90,24 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     @BindView(R.id.calc_loading_layout)
     FrameLayout loadingLayout;
 
+    @BindView(R.id.calc_spinner)
+    Spinner spinner;
+
+    @OnItemSelected(R.id.calc_spinner)
+    public void spinnerItemSelected(Spinner spinner, int position) {
+        if (!spinner.getSelectedItem().toString().equals(getResources().getStringArray(R.array.check_client)[0])){
+        editClient.setText(spinner.getSelectedItem().toString());}
+    }
+
 
     @OnClick(R.id.button_calculate)
     void onClick() {
-//        presenter.calculatorStart(editHeight.getText().toString(),
-//                editLength.getText().toString(), editSquareMeterCost.getText().toString());
-//        if (checkFields(calcFields)) {
-//            checkFields(sendFields);
-//        }
-         Log.d( "228",presenter.getClients().toString());
-       // presenter.getClients();
+        presenter.calculatorStart(editHeight.getText().toString(),
+                editLength.getText().toString(), editSquareMeterCost.getText().toString());
+        if (checkFields(calcFields)) {
+            checkFields(sendFields);
+        }
+
     }
 
     @OnClick(R.id.button_send)
@@ -123,6 +135,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         View root = inflater.inflate(R.layout.fragment_calculator, container, false);
         unbinder = ButterKnife.bind(this, root);
         makeSendFieldsList();
+        makeSpinnerClients();
 
 
         return root;
@@ -137,6 +150,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
                 horizontalConnectionCount, crossbarCount, deckCount,
                 supportsCount, costPerDay));*/
         //textViewResult.setVisibility(View.VISIBLE);
+
         editStairsFrame.setText(((Integer) stairsFrameCount).toString());
         editPassFrame.setText(((Integer) passFrameCount).toString());
         editDiagonalConnection.setText(((Integer) diagonalConnectionCount).toString());
@@ -212,6 +226,18 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         calcFields.add(editSquareMeterCost);
 
 
+    }
+
+    private void  makeSpinnerClients(){
+        ArrayList<String> clientsList = new ArrayList<>();
+        clientsList.add(getResources().getStringArray(R.array.check_client)[0]);
+        clientsList.addAll(presenter.getClients());
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, clientsList);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
     }
 
     @Override

@@ -115,7 +115,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_client" />
+
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/calc_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+
+
+            android:layout_marginEnd="0dp"
+            android:entries="@array/check_client"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_client_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/calc_edit_date_layout"
@@ -129,7 +146,7 @@
             app:layout_constraintEnd_toEndOf="parent"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_client_layout">
+            app:layout_constraintTop_toBottomOf="@+id/calc_spinner">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/calc_edit_date"

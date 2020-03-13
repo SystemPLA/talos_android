@@ -5,7 +5,9 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 import butterknife.Unbinder;
 import moxy.MvpAppCompatFragment;
 import moxy.presenter.InjectPresenter;
@@ -65,6 +68,15 @@ public class RefundFragment extends MvpAppCompatFragment implements ArrivingRefu
     @BindView(R.id.refund_loading_layout)
     FrameLayout loadingLayout;
 
+    @BindView(R.id.refund_spinner)
+    Spinner spinner;
+
+    @OnItemSelected(R.id.refund_spinner)
+    public void spinnerItemSelected(Spinner spinner, int position) {
+        if (!spinner.getSelectedItem().toString().equals(getResources().getStringArray(R.array.check_client)[0])){
+            editClient.setText(spinner.getSelectedItem().toString());}
+    }
+
     @OnClick(R.id.button_send_refund)
     void onClickSend() {
         if (!checkFields(sendFields)) return;
@@ -87,6 +99,7 @@ public class RefundFragment extends MvpAppCompatFragment implements ArrivingRefu
         View root = inflater.inflate(R.layout.fragment_refund, container, false);
         unbinder = ButterKnife.bind(this, root);
         makeSendFieldsList();
+        makeSpinnerClients();
         return root;
     }
 
@@ -116,6 +129,18 @@ public class RefundFragment extends MvpAppCompatFragment implements ArrivingRefu
             }
         }, 1000);
 
+    }
+
+    private void  makeSpinnerClients(){
+        ArrayList<String> clientsList = new ArrayList<>();
+        clientsList.add(getResources().getStringArray(R.array.check_client)[0]);
+        clientsList.addAll(presenter.getClients());
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_item, clientsList);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
     }
 
     @Override
