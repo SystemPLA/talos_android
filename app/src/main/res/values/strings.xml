@@ -1,12 +1,4 @@
-<!DOCTYPE resources [<!ENTITY stairsFrame "Рама с лестницей">
-    <!ENTITY passFrame "Рама проходная">
-    <!ENTITY diagonalConnection "Связь диагональная">
-    <!ENTITY horizontalConnection "Связь горизонтальная">
-    <!ENTITY crossbar "Ригель настила">
-    <!ENTITY deck "Настил деревянный">
-    <!ENTITY supports "Опоры (пятки)">
-    <!ENTITY costPerDay "Стоимость в день">
-    ]>
+<!DOCTYPE resources [<!ENTITY stairsFrame "Рама с лестницей"><!ENTITY passFrame "Рама проходная"><!ENTITY diagonalConnection "Связь диагональная"><!ENTITY horizontalConnection "Связь горизонтальная"><!ENTITY crossbar "Ригель настила"><!ENTITY deck "Настил деревянный"><!ENTITY supports "Опоры (пятки)"><!ENTITY costPerDay "Стоимость в день">]>
 <resources>
     <string name="app_name">talos_android</string>
     <string name="table_name_label">Наименование</string>
@@ -21,16 +13,37 @@
 
 
     <string name="launch_calc">Calculate the price</string>
-    <string name="calc_title">Рассчитайте стоимость:</string>
-    <string name="calc_height">Высота (м)</string>
-    <string name="calc_lenght">Длина (м)</string>
+    <string name="calc_title">Рассчитайте стоимость</string>
+    <string name="calc_height">Высота, м</string>
+    <string name="calc_length">Длина, м</string>
     <string name="calc_button">Рассчитать</string>
 
     <string name="calc_result_format">&stairsFrame; = %d\n&passFrame; = %d\n&diagonalConnection; = %d\n&horizontalConnection;
         = %d\n&crossbar; = %d\n&deck; = %d\n&supports; = %d\n&costPerDay; = %.2f</string>
     <string name="button_more_text">Подробнее</string>
 
+    <string name="calc_cost_per_meter">Стоимость квадратного метра, руб</string>
+    <string name="text_stairs_frame">Рама с лестницей, шт</string>
+    <string name="text_pass_frame">Рама проходная, шт</string>
+    <string name="text_diagonal_connection">Связь диагональная, шт</string>
+    <string name="text_horizontal_connection">Связь горизонтальная, шт</string>
+    <string name="text_crossbar">Ригель настила, шт</string>
+    <string name="text_deck">Настил деревянный, шт</string>
+    <string name="text_supports">Опоры (пятки), шт</string>
+
+    <string name="text_stairs_frame_bad">Рама с лестницей БРАК, шт</string>
+    <string name="text_pass_frame_bad">Рама проходная БРАК, шт</string>
+    <string name="text_diagonal_connection_bad">Связь диагональная БРАК, шт</string>
+    <string name="text_horizontal_connection_bad">Связь горизонтальная БРАК, шт</string>
+    <string name="text_crossbar_bad">Ригель настила БРАК, шт</string>
+    <string name="text_deck_bad">Настил деревянный БРАК, шт</string>
+    <string name="text_supports_bad">Опоры (пятки) БРАК, шт</string>
+
+   <string name="delete_item">Удалить</string>
+
+
     <string name="delete_item">Удалить</string>
+
     <string name="change_item">Изменить</string>
     <string name="id_label">ID в базе данных</string>
     <string name="product_name_label">Название товара</string>
@@ -55,4 +68,33 @@
     <string name="deck_shipment">Настил деревянный 1х1</string>
     <string name="support_shipment">Опора простая (пятки)</string>
     <string name="accept_shipment">Подтвердить</string>
+
+
+    <string name="text_cost_per_day">Аренда в месяц/сутки, руб</string>
+    <string name="text_credit">Залог, руб</string>
+    <string name="text_client">Имя клиента</string>
+    <string name="calc_send">ОТПРАВИТЬ НА СЕРВЕР</string>
+    <string name="accept_refund">ОФОРМИТЬ ВОЗВРАТ</string>
+    <string name="accept_arriving">ПРИНЯТЬ ПОСТУПЛЕНИЕ</string>
+    <string name="refund_title">Возврат товаров</string>
+    <string name="refund_button_text">ПОДТВЕРДИТЬ ВОЗВРАТ</string>
+    <string name="arriving_title">Поступление товара</string>
+    <string name="arriving_button_text">ПОДТВЕРДИТЬ ПОСТУПЛЕНИЕ</string>
+    <string name="rinstroy">Ринстрой</string>
+    <string name="text_supplier">Поставщик</string>
+    <string name="text_date">Дата</string>
+    <string name="text_selling">Продажа новые/бу, руб</string>
+    <string name="defect_title">Отбраковать</string>
+    <string name="defect_button_send">Отправить</string>
+    <string name="defect_description">Списать в брак уже учтенные материалы на складе</string>
+    <string name="defect_button_tools">ОТБРАКОВАТЬ</string>
+    <string name="junk_button_tools">УТИЛИЗИРОВАТЬ</string>
+    <string name="junk_title">Утилизация</string>
+    <string name="junk_description">Списать с учета  неремонтопригодные материалы</string>
+    <string name="junk_button_send">УТИЛИЗИРОВАТЬ</string>
+
+    <string-array name="check_client">
+        <item>"Выбрать из списка"</item>
+    </string-array>
+    
 </resources>

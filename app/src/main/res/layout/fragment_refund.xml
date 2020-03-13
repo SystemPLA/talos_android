@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".mvp.view.ui.fragment.RefundFragment">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,13 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <TextView
-            android:id="@+id/calc_text_view_title"
+            android:id="@+id/refund_text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/roboto"
-            android:text="@string/calc_title"
+            android:text="@string/refund_title"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,100 +30,50 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_height_layout"
+            android:id="@+id/refund_edit_date_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+
             android:layout_marginEnd="16dp"
+
+
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_text_view_title">
+            app:layout_constraintTop_toBottomOf="@+id/refund_text_view_title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_height"
+                android:id="@+id/refund_edit_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/calc_height"
-                android:inputType="number" />
+                android:focusable="false"
+                android:hint="@string/text_date" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_length_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_height_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_length"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/calc_length"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_cost_per_meter_layout"
+            android:id="@+id/refund_client_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
 
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_length_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_cost_per_meter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/calc_cost_per_meter"
-                android:inputType="number|numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/button_calculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/ic_calc_launch"
-            android:fontFamily="@font/roboto"
-            android:text="@string/calc_button"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_cost_per_meter_layout" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_client_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
 
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_calculate">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_date_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_client"
+                android:id="@+id/refund_edit_client"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:hint="@string/text_client" />
-
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
-            android:id="@+id/calc_spinner"
+            android:id="@+id/refund_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -132,33 +85,10 @@
             app:layout_constraintEnd_toEndOf="parent"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_client_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/refund_client_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_date_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginEnd="16dp"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_spinner">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:hint="@string/text_date" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_stairs_frame_layout"
+            android:id="@+id/refund_edit_stairs_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -167,10 +97,10 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_date_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_spinner">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_stairs_frame"
+                android:id="@+id/refund_edit_stairs_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_stairs_frame"
@@ -178,7 +108,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_pass_frame_layout"
+            android:id="@+id/refund_edit_pass_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -186,10 +116,10 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_stairs_frame_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_stairs_frame_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_pass_frame"
+                android:id="@+id/refund_edit_pass_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_pass_frame"
@@ -197,7 +127,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_diagonal_connection_layout"
+            android:id="@+id/refund_edit_diagonal_connection_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -205,10 +135,10 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_pass_frame_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_pass_frame_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_diagonal_connection"
+                android:id="@+id/refund_edit_diagonal_connection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_diagonal_connection"
@@ -216,7 +146,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_horizontal_connection_layout"
+            android:id="@+id/refund_edit_horizontal_connection_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -224,10 +154,10 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_diagonal_connection_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_diagonal_connection_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_horizontal_connection"
+                android:id="@+id/refund_edit_horizontal_connection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_horizontal_connection"
@@ -235,7 +165,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_crossbar_layout"
+            android:id="@+id/refund_edit_crossbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -243,10 +173,10 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_horizontal_connection_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_horizontal_connection_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_crossbar"
+                android:id="@+id/refund_edit_crossbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_crossbar"
@@ -254,7 +184,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_edit_deck_layout"
+            android:id="@+id/refund_edit_deck_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -262,10 +192,10 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_crossbar_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_crossbar_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_deck"
+                android:id="@+id/refund_edit_deck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_deck"
@@ -273,7 +203,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_supports_layout"
+            android:id="@+id/refund_supports_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -281,99 +211,36 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_edit_deck_layout">
+            app:layout_constraintTop_toBottomOf="@+id/refund_edit_deck_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_supports"
+                android:id="@+id/refund_edit_supports"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_supports"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_cost_per_day_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_supports_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_cost_per_day"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/text_cost_per_day"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_credit_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_cost_per_day_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_credit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/text_credit"
-                android:inputType="number|numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/calc_selling_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_credit_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/calc_edit_selling"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/text_selling"
-                android:inputType="number|numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
         <Button
-            android:id="@+id/button_send"
+            android:id="@+id/button_send_refund"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-
             android:background="@drawable/ic_calc_launch"
             android:fontFamily="@font/roboto"
-            android:text="@string/calc_send"
-            android:textColor="@android:color/white"
+            android:text="@string/refund_button_text"
+            android:textColor="@android:color/background_light"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_selling_layout" />
-
-
+            app:layout_constraintTop_toBottomOf="@+id/refund_supports_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
         <FrameLayout
-            android:id="@+id/calc_loading_layout"
+            android:id="@+id/refund_loading_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBackgroundMain"
@@ -381,7 +248,7 @@
             tools:visibility="gone"            >
 
             <ProgressBar
-                android:id="@+id/calc_progress_bar"
+                android:id="@+id/refund_progress_bar"
                 style="?android:attr/progressBarStyle"
                 android:visibility="visible"
                 android:layout_width="wrap_content"
@@ -393,4 +260,3 @@
 
     </FrameLayout>
 </ScrollView>
-

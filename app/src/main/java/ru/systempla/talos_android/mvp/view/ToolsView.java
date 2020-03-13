@@ -5,11 +5,20 @@ import moxy.viewstate.strategy.AddToEndSingleStrategy;
 import moxy.viewstate.strategy.OneExecutionStateStrategy;
 import moxy.viewstate.strategy.StateStrategyType;
 
-@StateStrategyType(value = AddToEndSingleStrategy.class)
+@StateStrategyType(value = OneExecutionStateStrategy.class)
 public interface ToolsView extends MvpView {
+    @StateStrategyType(value = AddToEndSingleStrategy.class)
     void init();
-    void setToolbarTitle(String string);
 
-    @StateStrategyType(value = OneExecutionStateStrategy.class)
+	  void setToolbarTitle(String string);
+
     void startCalculator();
+
+    void startRefund();
+
+    void startArriving();
+
+    void startDefecting();
+
+    void startJunking();
 }
