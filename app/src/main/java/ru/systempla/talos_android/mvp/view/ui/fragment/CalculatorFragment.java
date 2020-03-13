@@ -32,8 +32,6 @@ import ru.systempla.talos_android.R;
 import ru.systempla.talos_android.mvp.presenter.CalculatorPresenter;
 import ru.systempla.talos_android.mvp.view.CalculatorView;
 import ru.systempla.talos_android.mvp.view.ui.DatePicker.MyDatePicker;
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -53,14 +51,11 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     @BindView(R.id.calc_edit_height)
     TextInputEditText editHeight;
-
     @BindView(R.id.calc_edit_length)
     TextInputEditText editLength;
     @BindView(R.id.calc_edit_cost_per_meter)
     TextInputEditText editSquareMeterCost;
-
-
-    //    @BindView(R.id.calc_text_view_result)
+//    @BindView(R.id.calc_text_view_result)
 //    TextView textViewResult;
     @BindView(R.id.calc_edit_stairs_frame)
     TextInputEditText editStairsFrame;
@@ -78,7 +73,6 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     TextInputEditText editSupports;
     @BindView(R.id.calc_edit_cost_per_day)
     TextInputEditText editCostPerDay;
-
     @BindView(R.id.calc_edit_credit)
     TextInputEditText editCredit;
     @BindView(R.id.calc_edit_selling)
@@ -87,10 +81,8 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
     TextInputEditText editClient;
     @BindView(R.id.calc_edit_date)
     TextInputEditText editDate;
-
     @BindView(R.id.calc_loading_layout)
     FrameLayout loadingLayout;
-
     @BindView(R.id.calc_spinner)
     Spinner spinner;
 
@@ -99,7 +91,6 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         if (!spinner.getSelectedItem().toString().equals(getResources().getStringArray(R.array.check_client)[0])){
         editClient.setText(spinner.getSelectedItem().toString());}
     }
-
 
     @OnClick(R.id.button_calculate)
     void onClick() {
@@ -127,7 +118,6 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         new MyDatePicker(getContext(), editDate);
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -194,7 +184,6 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
         }, 1000);
 
     }
-
 
     private boolean checkFields(ArrayList<TextInputEditText> fieldsToCheck) {
         boolean result = true;
@@ -289,6 +278,7 @@ public class CalculatorFragment extends MvpAppCompatFragment implements Calculat
 
     private String getDateText() {
         return editDate.getText().toString();
+    }
       
     @Override
     public void onResume() {

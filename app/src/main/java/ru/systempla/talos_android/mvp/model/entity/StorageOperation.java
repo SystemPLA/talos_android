@@ -64,8 +64,6 @@ public class StorageOperation  implements Serializable {
     @SerializedName("supportsBadCount")
     @Expose
     private int supportsBadCount;
-    @Expose
-    private Boolean performed;
 
     public StorageOperation(String date, String customerName, String type, Integer stairsFrameCount,
                             Integer passFrameCount, Integer diagonalConnectionCount, Integer horizontalConnectionCount,
